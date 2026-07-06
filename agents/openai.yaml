@@ -1,0 +1,4 @@
+interface:
+  display_name: "Codex Home Migration"
+  short_description: "Standardize user-installed Codex paths and future installs."
+  default_prompt: "Use this skill to confirm long-term Codex install paths, migrate user-managed content safely, and keep future installs in the right category with junctions when needed."
