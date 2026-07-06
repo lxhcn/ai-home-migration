@@ -244,7 +244,10 @@ Required behavior after any install, migration, rename, or cleanup:
    - total managed entry count
    - per-category counts
    - excluded system or empty directories
-5. list each entry with a short Chinese usage or purpose hint
+5. write the inventory as a Chinese-primary bilingual quick reference:
+   - Chinese headings and purpose hints should come first
+   - English headings and purpose notes should follow as secondary context
+   - each listed entry should include Chinese purpose, English purpose, path, and a short invocation example when applicable
 6. keep local/private runtime files out of shareable repository files
 
 ### `references/installed-skills-cheatsheet.md`

@@ -38,13 +38,14 @@ When `ai-home-migration` runs:
 
 ## Root Inventory Rule
 
-`<confirmed-ai-home-root>/ai-home-inventory.md` must include:
+`<confirmed-ai-home-root>/ai-home-inventory.md` must be a Chinese-primary bilingual quick reference and include:
 
 - total managed entry count
 - per-category counts for `skills`, `agent-skills`, `mcp`, `user_plugin`, and `agent-config`
 - plugin cache roots or plugin bundles when they are user-visible under the confirmed home
 - backup directories and legacy entry junctions created during migration
-- concise Chinese usage or purpose hints for each listed entry
+- concise Chinese purpose hints first, with English purpose notes as secondary context
+- path and invocation example fields where applicable
 
 Do not count system folders without `SKILL.md` as skills. For example, a `.system` directory can be present under `skills` but should be reported as excluded system support content, not as a callable skill.
 
