@@ -29,7 +29,7 @@
 | 🧠 Skills | Codex skills、Claude 风格 skills、通用 OpenAI 兼容 skill 包 |
 | 🔗 Agent 入口 | `agent-skills` 链接、工具生成的 agent 入口 |
 | 🧩 MCP | 用户管理的 MCP bundle、server 和支持目录 |
-| 🛠️ 插件 | 第三方插件仓库、独立工具仓库 |
+| 🛠️ 插件 | 第三方插件仓库、独立工具仓库、marketplace 安装后的真实仓库 |
 | ⚙️ 配置 | 用户可控的 agent prompt、适配元数据和启动配置 |
 | 🧭 旧入口 | 用跨平台 bridge 保留旧工具入口 |
 
@@ -58,6 +58,16 @@ ai-home-migration/
 
 首次使用时，skill 会让你确认 `skills`、`agent-skills`、`mcp`、`user_plugin` 和 `agent-config` 的长期路径。
 
+## 🗂️ 统一目录分别放什么
+
+| 目录 | 存放内容 |
+| --- | --- |
+| `skills` | agent 需要直接发现和调用的用户 skill，通常每个目录有 `SKILL.md` |
+| `agent-skills` | 工具生成的 skill 入口、兼容链接、Claude-style commands / agents、面向 agent 的启动入口 |
+| `mcp` | 用户管理的 MCP server、bundle、manifest、adapter 和支持文件 |
+| `user_plugin` | 第三方插件仓库、整套自洽的插件、独立工具仓库、marketplace 安装后迁入的真实仓库 |
+| `agent-config` | 用户可控的 agent 配置、adapter prompt、路由说明、启动元数据、本地策略片段 |
+
 ## ✅ 安装后必须做
 
 安装这个仓库只代表你的 agent 已经能读取 `ai-home-migration` 的规则。它不会在安装瞬间自动迁移目录、修改配置或创建接引 bridge。
@@ -79,6 +89,8 @@ ai-home-migration/
 | 5. 写入清单 | 更新 `<confirmed-ai-home-root>/ai-home-inventory.md` |
 
 为什么不自动静默处理？因为这一步可能涉及移动目录、备份旧内容、修改工具入口、创建平台接引（Windows junction 或 macOS/Linux symlink）。`ai-home-migration` 会引导并执行这些操作，但应该在你明确触发并确认后进行。
+
+如果通过 Codex marketplace 或类似安装器安装插件，也要先确认最终长期位置。即使安装器先把仓库下载到 Windows 的 `C:\Users\<user>`、`.codex` 缓存目录或临时 marketplace 路径，真实仓库也应该迁到统一的 `user_plugin/<tool-name>`，旧入口只作为 bridge 保留。
 
 如果你只想接引 Claude，可以这样说：
 
@@ -160,6 +172,8 @@ D:\2_file\codex-home\ai-home-inventory.md
 - 每个条目的路径
 - 适用时提供调用示例
 - 被排除的支持目录，例如 `.system`
+
+“带 skill 的插件”只在一种情况下单独列出：插件仓库本身放在 `user_plugin`，同时还需要在 `skills` 或 `agent-skills` 里暴露可调用入口。像 `last30days` 这种整套功能都在 plugin 内部自洽的插件，只列在 `user_plugin`，不额外放进“带 skill 的插件”分组。
 
 历史路径 `references/installed-skills-cheatsheet.md` 只作为兼容指针保留。
 

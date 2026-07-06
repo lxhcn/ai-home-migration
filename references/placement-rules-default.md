@@ -52,6 +52,31 @@ Do not silently assume a final storage layout before this step.
 
 These are suggested defaults only. The installed copy should store the final confirmed values in a local placement file.
 
+## Category Content Defaults
+
+- `skills`: callable user skills that should be discovered directly by the agent, normally one folder per skill with `SKILL.md`.
+- `agent-skills`: generated skill links, compatibility entry points, Claude-style command or agent folders, and agent-facing launchers.
+- `mcp`: MCP servers, bundles, manifests, adapters, and support files controlled by the user.
+- `user_plugin`: third-party plugin repositories, self-contained plugin suites, standalone tool homes, marketplace-installed repos after migration, and plugin source trees.
+- `agent-config`: user-controlled config files, adapter prompts, routing notes, launcher metadata, and local policy snippets.
+
+## Skill-Linked Plugin Default
+
+Treat a plugin as skill-linked only when it depends on one or more callable skill entries under the confirmed `skills` or `agent-skills` path.
+
+Default placement rule:
+
+- store the real repo under `user_plugin/<tool-name>`
+- store only required callable skill entries or links under `skills` or `agent-skills`
+- list it in the inventory as a skill-linked plugin only when those external skill entries exist
+- list self-contained plugin suites only under `user_plugin`
+
+## Marketplace Install Default
+
+Before using Codex marketplace or another host installer, confirm the final long-term `user_plugin/<tool-name>` path.
+
+Do not leave the real repo inside vendor-managed cache or temp marketplace paths long-term. If the host installs it to a temp marketplace path first, move or copy the real repo into `user_plugin` and keep the old path as a bridge when the host still expects that entry path.
+
 ## First-Run Prompt Template
 
 Use this concise structure:

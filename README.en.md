@@ -29,7 +29,7 @@ It helps you standardize:
 | 🧠 Skills | Codex skills, Claude-style skills, and generic OpenAI-compatible skill packages |
 | 🔗 Agent entries | `agent-skills` links and tool-generated agent entry points |
 | 🧩 MCP | User-managed MCP bundles, servers, and support directories |
-| 🛠️ Plugins | Third-party plugin repos and standalone tool homes |
+| 🛠️ Plugins | Third-party plugin repos, standalone tool homes, and real repos migrated after marketplace installs |
 | ⚙️ Config | User-controlled agent prompts, adapter metadata, and launcher config |
 | 🧭 Legacy paths | Cross-platform bridges that keep older tool entries working |
 
@@ -58,6 +58,16 @@ Use the entry point that matches your runtime:
 
 On first use, the skill asks you to confirm long-term paths for `skills`, `agent-skills`, `mcp`, `user_plugin`, and `agent-config`.
 
+## 🗂️ What Each Directory Stores
+
+| Directory | Contents |
+| --- | --- |
+| `skills` | User skills that the agent should discover and invoke directly, normally one folder per skill with `SKILL.md` |
+| `agent-skills` | Generated skill entries, compatibility links, Claude-style commands / agents, and agent-facing launchers |
+| `mcp` | User-managed MCP servers, bundles, manifests, adapters, and support files |
+| `user_plugin` | Third-party plugin repos, self-contained plugin suites, standalone tool homes, and real repos migrated after marketplace installs |
+| `agent-config` | User-controlled agent config, adapter prompts, routing notes, launcher metadata, and local policy snippets |
+
 ## ✅ After Install: Required First Run
 
 Installing this repository only makes the `ai-home-migration` rules available to your agent. It does not silently migrate folders, edit configuration, or create entry bridges at install time.
@@ -79,6 +89,8 @@ The first run does five things:
 | 5. Refresh inventory | Update `<confirmed-ai-home-root>/ai-home-inventory.md` |
 
 Why not do this automatically and silently? Because this step may move directories, preserve backups, repoint tool entries, or create platform bridges such as Windows junctions or macOS/Linux symlinks. `ai-home-migration` can guide and perform that work, but it should happen only after you explicitly trigger and confirm it.
+
+For Codex marketplace or similar host installers, confirm the final long-term location first. Even if the installer downloads a repo into a Windows `C:\Users\<user>` path, `.codex` cache, or temporary marketplace path, the real repo should be migrated into `user_plugin/<tool-name>`, with the old entry path kept only as a bridge when needed.
 
 If you only want to bridge Claude, say:
 
@@ -160,6 +172,8 @@ It is a Chinese-primary bilingual quick reference. It includes:
 - path for every listed entry
 - invocation examples when applicable
 - excluded support folders such as `.system`
+
+A "plugin with skills" is listed separately only when the plugin repo lives under `user_plugin` and also needs callable entries under `skills` or `agent-skills`. A self-contained plugin suite such as `last30days` should be listed only under `user_plugin`, not under a separate skill-linked plugin group.
 
 The historical `references/installed-skills-cheatsheet.md` path is kept only as a compatibility pointer.
 

@@ -21,8 +21,11 @@ The format is inspired by Keep a Changelog and uses semantic-style version label
 - Standardized the local inventory format as a Chinese-primary bilingual quick reference with Chinese and English purpose fields
 - Redesigned the English and Simplified Chinese README files with badges, icon-led sections, navigation links, comparison tables, and clearer installation flow
 - Made Simplified Chinese the primary GitHub README, moved English documentation to `README.en.md`, and refreshed GitHub About topic guidance
-- Added a prominent post-install first-run section explaining that migration and junction bridging require explicit user-triggered execution
+- Added a prominent post-install first-run section explaining that migration and platform bridge creation require explicit user-triggered execution
 - Added cross-platform bridge rules that map Windows directory junctions and macOS/Linux symbolic links into one shared entry-path preservation model
+- Clarified that marketplace-installed plugin repos must be moved into the confirmed `user_plugin` path instead of remaining in user-profile, cache, or temporary marketplace locations
+- Narrowed the "plugin with skills" inventory rule so self-contained plugin suites stay under `user_plugin`; only plugins that require callable entries under `skills` or `agent-skills` get a dedicated skill-linked plugin subsection
+- Documented what each confirmed category path stores in the Chinese and English README files
 
 ## [1.0.0] - 2026-07-06
 
