@@ -19,7 +19,10 @@ This folder separates shareable policy from local runtime state.
   Machine-specific confirmed paths. Read it only if it already exists in the installed copy for the current machine.
 
 - `installed-skills-cheatsheet.md`
-  Local AI home inventory cheat sheet. The historical filename is retained, but the content should summarize every confirmed category, not only skills.
+  Backward-compatible pointer only. The canonical inventory belongs at the confirmed AI home root as `ai-home-inventory.md`.
+
+- `<confirmed-ai-home-root>/ai-home-inventory.md`
+  Canonical local AI home inventory. This file lives at the root of the user's confirmed AI home, not under a single skill folder.
 
 ## Usage Rule
 
@@ -30,11 +33,12 @@ When `ai-home-migration` runs:
 3. ask the user to confirm or change the category paths
 4. if the user still does not specify custom paths, proceed with the suggested defaults
 5. create or update `placement-rules-local.md` in the installed copy
-6. create or update `installed-skills-cheatsheet.md` after skill installs, plugin installs, MCP changes, category migrations, renames, cleanup, or local inventory corrections
+6. create or update `<confirmed-ai-home-root>/ai-home-inventory.md` after skill installs, plugin installs, MCP changes, category migrations, renames, cleanup, or local inventory corrections
+7. if `references/installed-skills-cheatsheet.md` exists, keep it as a pointer to the root inventory instead of a second source of truth
 
-## Local Inventory Cheat Sheet Rule
+## Root Inventory Rule
 
-`installed-skills-cheatsheet.md` must include:
+`<confirmed-ai-home-root>/ai-home-inventory.md` must include:
 
 - total managed entry count
 - per-category counts for `skills`, `agent-skills`, `mcp`, `user_plugin`, and `agent-config`
@@ -43,6 +47,8 @@ When `ai-home-migration` runs:
 - concise Chinese usage or purpose hints for each listed entry
 
 Do not count system folders without `SKILL.md` as skills. For example, a `.system` directory can be present under `skills` but should be reported as excluded system support content, not as a callable skill.
+
+The legacy `references/installed-skills-cheatsheet.md` path must not contain a divergent copy of the inventory. It should point readers to the root-level inventory file.
 
 ## Claude Coverage Rule
 

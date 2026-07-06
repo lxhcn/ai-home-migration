@@ -52,7 +52,8 @@ For hosted assistants or local agent runners, paste the prompt snippet from `age
 - Keep `agents/generic-openai.md` for prompt-only agents.
 - Keep local runtime files ignored:
   - `references/placement-rules-local.md`
-  - `references/installed-skills-cheatsheet.md`
+  - `<confirmed-ai-home-root>/ai-home-inventory.md`
+  - `references/installed-skills-cheatsheet.md` as a compatibility pointer only
 - Add new runtime manifests only if they are thin pointers to the canonical workflow.
 
 ## Naming Guidance

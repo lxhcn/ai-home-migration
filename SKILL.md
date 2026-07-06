@@ -13,7 +13,7 @@ It covers the full lifecycle:
 - migrate existing content into those locations
 - recreate original entry paths as junctions when needed
 - install new content into the correct category path
-- maintain local helper files such as the installed AI home inventory cheat sheet
+- maintain local helper files such as the root-level AI home inventory
 
 This skill is intentionally split into:
 
@@ -44,7 +44,11 @@ Always read these files before acting:
 
 Read `references/placement-rules-local.md` only if it already exists in the installed copy for the current machine.
 
-Read `references/installed-skills-cheatsheet.md` only when updating the local cheat sheet after a skill install.
+Read the root-level local inventory file only when updating the machine inventory after an install, migration, rename, or cleanup.
+
+The canonical local inventory path is `<confirmed-ai-home-root>/ai-home-inventory.md`, for example `D:\2_file\codex-home\ai-home-inventory.md`.
+
+Keep `references/installed-skills-cheatsheet.md` only as a backward-compatible pointer when an older workflow expects that file.
 
 If either local file does not exist yet, create it during the workflow instead of treating that as an error.
 
@@ -94,7 +98,8 @@ If the user later changes any confirmed path, automatically perform the needed m
 8. Validate junction targets and destination contents.
 9. Create or update local helper files:
    - `references/placement-rules-local.md`
-   - `references/installed-skills-cheatsheet.md`
+   - `<confirmed-ai-home-root>/ai-home-inventory.md`
+   - optional compatibility pointer at `references/installed-skills-cheatsheet.md`
 
 ## Inventory Rules
 
@@ -214,9 +219,11 @@ Required behavior:
 - update it if the user changes the confirmed locations
 - do not treat it as a shareable default file
 
-### `references/installed-skills-cheatsheet.md`
+### `<confirmed-ai-home-root>/ai-home-inventory.md`
 
-This historical filename is kept for compatibility, but the file should be treated as the local AI home inventory cheat sheet.
+This is the canonical local AI home inventory file.
+
+Place it at the confirmed AI home root, not under one skill's `references/` folder. For example, if the confirmed root is `D:\2_file\codex-home`, write `D:\2_file\codex-home\ai-home-inventory.md`.
 
 It must summarize every confirmed category, not only normal skills:
 
@@ -239,6 +246,12 @@ Required behavior after any install, migration, rename, or cleanup:
    - excluded system or empty directories
 5. list each entry with a short Chinese usage or purpose hint
 6. keep local/private runtime files out of shareable repository files
+
+### `references/installed-skills-cheatsheet.md`
+
+This historical file path is kept only for backward compatibility.
+
+If it exists, replace its full inventory content with a short pointer to the canonical root-level inventory file. Do not maintain two independent inventories.
 
 ## Tool-Specific Guidance
 
