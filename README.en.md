@@ -86,6 +86,18 @@ If you only want to bridge Claude, say:
 Use ai-home-migration to inspect only Claude skills, commands, agents, and config entry paths. Tell me what should be bridged into the unified AI home and what should remain private local state.
 ```
 
+### Cross-Platform Bridge Rules
+
+`ai-home-migration` uses `bridge` as the shared user-facing concept: real content lives in the unified AI home, while old tool entry paths keep working. The operating-system implementation differs:
+
+| Platform | Default bridge | Typical use |
+| --- | --- | --- |
+| Windows | directory junction | `.codex\skills`, `.claude\skills`, legacy plugin entries |
+| macOS | symbolic link | `~/.codex/skills`, `~/.claude/skills`, `~/.agents/skills` |
+| Linux | symbolic link | `~/.codex/skills`, `~/.claude/skills`, `~/.agents/skills` |
+
+It does not broadly bridge sessions, history, shell snapshots, local settings, or project-owned `.claude/` content. Those are private or project state and require separate confirmation.
+
 ## 🧭 How It Works
 
 ```text

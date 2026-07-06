@@ -22,6 +22,7 @@ The format is inspired by Keep a Changelog and uses semantic-style version label
 - Redesigned the English and Simplified Chinese README files with badges, icon-led sections, navigation links, comparison tables, and clearer installation flow
 - Made Simplified Chinese the primary GitHub README, moved English documentation to `README.en.md`, and refreshed GitHub About topic guidance
 - Added a prominent post-install first-run section explaining that migration and junction bridging require explicit user-triggered execution
+- Added cross-platform bridge rules that map Windows directory junctions and macOS/Linux symbolic links into one shared entry-path preservation model
 
 ## [1.0.0] - 2026-07-06
 

@@ -13,6 +13,9 @@ This folder separates shareable policy from local runtime state.
 - `windows-junction-notes.md`
   Windows-specific migration and junction safety notes.
 
+- `cross-platform-bridge-rules.md`
+  Shared bridge policy for Windows junctions and macOS/Linux symbolic links.
+
 ## Local Runtime Files
 
 - `placement-rules-local.md`
@@ -35,6 +38,7 @@ When `ai-home-migration` runs:
 5. create or update `placement-rules-local.md` in the installed copy
 6. create or update `<confirmed-ai-home-root>/ai-home-inventory.md` after skill installs, plugin installs, MCP changes, category migrations, renames, cleanup, or local inventory corrections
 7. if `references/installed-skills-cheatsheet.md` exists, keep it as a pointer to the root inventory instead of a second source of truth
+8. use `cross-platform-bridge-rules.md` when old entry paths must keep working after real content moves into the confirmed AI home
 
 ## Root Inventory Rule
 

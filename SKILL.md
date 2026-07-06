@@ -40,6 +40,7 @@ Always read these files before acting:
 
 - `references/placement-rules.md`
 - `references/placement-rules-default.md`
+- `references/cross-platform-bridge-rules.md`
 - `references/windows-junction-notes.md`
 
 Read `references/placement-rules-local.md` only if it already exists in the installed copy for the current machine.
@@ -172,6 +173,20 @@ Steps:
 3. keep the original repo as fallback if needed
 
 This is the preferred safe pattern for active third-party tool repos.
+
+## Cross-Platform Bridge Rules
+
+Treat `bridge` as the user-facing concept for keeping old tool entry paths working after content moves into the confirmed AI home.
+
+Use OS-specific implementations:
+
+- Windows: prefer directory junctions for local directory entry paths
+- macOS: prefer symbolic links for directory entry paths
+- Linux: prefer symbolic links for directory entry paths
+
+Always read `references/cross-platform-bridge-rules.md` before creating, replacing, or validating an entry bridge.
+
+Do not broadly bridge private runtime state such as sessions, history, shell snapshots, local settings, or project-owned `.claude/` content without confirming that the user wants that exact behavior.
 
 ### Backup + Junction
 

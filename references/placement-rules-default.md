@@ -74,3 +74,12 @@ If the user later changes any confirmed category path:
 - recreate or update any required junctions
 - refresh the local placement record
 - refresh `<confirmed-ai-home-root>/ai-home-inventory.md` as a Chinese-primary bilingual inventory with total and per-category counts
+
+## Bridge Terminology
+
+Use `bridge` as the cross-platform term for preserving old tool entry paths:
+
+- Windows: directory junctions
+- macOS/Linux: symbolic links
+
+Do not silently bridge private runtime state. Ask before touching sessions, history, local settings, or project-owned `.claude/` content.

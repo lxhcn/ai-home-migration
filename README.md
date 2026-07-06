@@ -86,6 +86,18 @@ ai-home-migration/
 请用 ai-home-migration 只检查 Claude 的 skills、commands、agents 和配置入口，告诉我哪些应该接到统一 AI home，哪些应该保留为本机私有状态。
 ```
 
+### 跨平台接引规则
+
+`ai-home-migration` 对用户统一称为“接引 / bridge”：真实内容放在统一 AI home，旧工具入口继续可用。不同系统底层实现不同：
+
+| 系统 | 默认接引方式 | 典型用途 |
+| --- | --- | --- |
+| Windows | directory junction | `.codex\skills`、`.claude\skills`、插件旧入口 |
+| macOS | symbolic link | `~/.codex/skills`、`~/.claude/skills`、`~/.agents/skills` |
+| Linux | symbolic link | `~/.codex/skills`、`~/.claude/skills`、`~/.agents/skills` |
+
+它不会把 sessions、history、shell snapshots、local settings 或项目自己的 `.claude/` 内容一股脑自动接引；这些属于私有状态或项目状态，需要单独确认。
+
 ## 🧭 工作方式
 
 ```text
