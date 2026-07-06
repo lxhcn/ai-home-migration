@@ -71,7 +71,7 @@ Use this concise structure:
 If the user later changes any confirmed category path:
 
 - automatically perform the migration needed to move content into the new location
-- recreate or update any required junctions
+- recreate or update any required entry bridges
 - refresh the local placement record
 - refresh `<confirmed-ai-home-root>/ai-home-inventory.md` as a Chinese-primary bilingual inventory with total and per-category counts
 

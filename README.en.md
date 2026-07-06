@@ -9,7 +9,7 @@ Make AI agent installs clean, predictable, portable, and reusable.
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 ![Skill](https://img.shields.io/badge/type-agent%20skill-5B8DEF)
 ![Agents](https://img.shields.io/badge/agents-Codex%20%7C%20Claude%20%7C%20OpenAI-20A67A)
-![Windows](https://img.shields.io/badge/Windows-junction%20aware-0078D4)
+![Bridge](https://img.shields.io/badge/bridge-junction%20%7C%20symlink-0078D4)
 ![Inventory](https://img.shields.io/badge/inventory-Chinese--primary%20bilingual-F59E0B)
 
 [简体中文](README.md) · [Install](#-install) · [After Install](#-after-install-required-first-run) · [How It Works](#-how-it-works) · [Inventory](#-local-inventory)
@@ -31,7 +31,7 @@ It helps you standardize:
 | 🧩 MCP | User-managed MCP bundles, servers, and support directories |
 | 🛠️ Plugins | Third-party plugin repos and standalone tool homes |
 | ⚙️ Config | User-controlled agent prompts, adapter metadata, and launcher config |
-| 🧭 Legacy paths | Junctions or compatibility paths that keep older tools working |
+| 🧭 Legacy paths | Cross-platform bridges that keep older tool entries working |
 
 The goal is simple: install once, migrate safely, keep old entry paths working, and make future installs follow the same rule.
 
@@ -60,12 +60,12 @@ On first use, the skill asks you to confirm long-term paths for `skills`, `agent
 
 ## ✅ After Install: Required First Run
 
-Installing this repository only makes the `ai-home-migration` rules available to your agent. It does not silently migrate folders, edit configuration, or create junctions at install time.
+Installing this repository only makes the `ai-home-migration` rules available to your agent. It does not silently migrate folders, edit configuration, or create entry bridges at install time.
 
 After installation, explicitly run the first organization pass in Codex, Claude, or another compatible agent:
 
 ```text
-Use ai-home-migration to inspect and organize my Codex, Claude, MCP, skills, and plugins paths. Put real content under one AI home and create junctions for legacy entry paths that must keep working.
+Use ai-home-migration to inspect and organize my Codex, Claude, MCP, skills, and plugins paths. Put real content under one AI home and create cross-platform bridges for legacy entry paths that must keep working.
 ```
 
 The first run does five things:
@@ -74,11 +74,11 @@ The first run does five things:
 | --- | --- |
 | 1. Inventory entry paths | Check `.codex`, `.claude`, `.agents`, MCP, plugins, and tool repo locations |
 | 2. Confirm long-term folders | Ask you to confirm final paths for `skills`, `agent-skills`, `mcp`, `user_plugin`, and `agent-config` |
-| 3. Migrate or bridge | Move real content into long-term folders, or create junctions / symlinks for legacy entries |
+| 3. Migrate or bridge | Move real content into long-term folders, or create the platform-appropriate bridge for legacy entries |
 | 4. Validate resolution | Confirm Codex, Claude, or other tools can still find content through their expected entry paths |
 | 5. Refresh inventory | Update `<confirmed-ai-home-root>/ai-home-inventory.md` |
 
-Why not do this automatically and silently? Because this step may move directories, preserve backups, repoint tool entries, or create Windows junctions. `ai-home-migration` can guide and perform that work, but it should happen only after you explicitly trigger and confirm it.
+Why not do this automatically and silently? Because this step may move directories, preserve backups, repoint tool entries, or create platform bridges such as Windows junctions or macOS/Linux symlinks. `ai-home-migration` can guide and perform that work, but it should happen only after you explicitly trigger and confirm it.
 
 If you only want to bridge Claude, say:
 
@@ -109,7 +109,7 @@ Ask you to confirm or change paths
    ↓
 Inventory current Codex / Claude / agent / MCP / plugin locations
    ↓
-Choose direct move, copy-first repoint, or backup + junction
+Choose direct move, copy-first repoint, or backup + bridge
    ↓
 Refresh the root AI home inventory
 ```
@@ -128,11 +128,11 @@ Prompt for long-term paths before migration starts, with sensible OS-aware defau
 
 ### 🛡️ Safer Migration
 
-Choose between `Direct move + junction`, `Copy first + repoint`, and `Backup + junction` based on file locks and risk.
+Choose between `Direct move + bridge`, `Copy first + repoint`, and `Backup + bridge` based on file locks and risk.
 
-### 🪟 Windows-Aware Junctions
+### 🧭 Cross-Platform Bridges
 
-Preserve legacy entry paths while moving real content to a cleaner long-term location.
+Preserve legacy entry paths with Windows junctions or macOS/Linux symlinks while moving real content to a cleaner long-term location.
 
 ### 🔁 Ongoing Maintenance
 
@@ -179,7 +179,7 @@ The historical `references/installed-skills-cheatsheet.md` path is kept only as 
 | Custom skills scattered across `.codex`, `.claude`, `.agents`, and ad-hoc folders | One confirmed long-term layout |
 | Plugin repos hidden inside tool homes | Plugin repos live under `user_plugin` |
 | MCP content managed separately | MCP content follows the same placement policy |
-| Old entry paths are fragile | Junctions keep legacy entry paths working |
+| Old entry paths are fragile | Bridges keep legacy entry paths working |
 | No reusable inventory | Root-level bilingual `ai-home-inventory.md` |
 
 ## 🧭 Default Path Policy
@@ -217,7 +217,7 @@ Use ai-home-migration to standardize my Codex, Claude, MCP, and agent-tool setup
 ```
 
 ```text
-Use ai-home-migration to move this plugin into user_plugin and keep the old entry path working with a junction.
+Use ai-home-migration to move this plugin into user_plugin and keep the old entry path working with a bridge.
 ```
 
 ## 📦 Shareable vs Local Files
@@ -231,6 +231,7 @@ Shareable repository files:
 - `references/placement-rules.md`
 - `references/placement-rules-default.md`
 - `references/agent-compatibility.md`
+- `references/cross-platform-bridge-rules.md`
 - `references/windows-junction-notes.md`
 
 Machine-specific runtime files:
@@ -262,6 +263,7 @@ ai-home-migration/
     generic-openai.md
   references/
     agent-compatibility.md
+    cross-platform-bridge-rules.md
     placement-rules.md
     placement-rules-default.md
     windows-junction-notes.md

@@ -1,6 +1,6 @@
 ---
 name: ai-home-migration
-description: Standardize user-installed AI agent content into user-confirmed long-term directories, recreate legacy entry paths as junctions when needed, and maintain local reference files. Use when installing, migrating, reorganizing, or cleaning up user-managed Codex, Claude, OpenAI-compatible agent, MCP, skill, plugin, or tool content, especially when content is scattered across `~/.codex`, `~/.claude`, `~/.agents`, third-party tool homes, or ad-hoc folders and the user wants one consistent install policy plus reusable first-run path selection rules.
+description: Standardize user-installed AI agent content into user-confirmed long-term directories, recreate legacy entry paths as platform-specific bridges when needed, and maintain local reference files. Use when installing, migrating, reorganizing, or cleaning up user-managed Codex, Claude, OpenAI-compatible agent, MCP, skill, plugin, or tool content, especially when content is scattered across `~/.codex`, `~/.claude`, `~/.agents`, third-party tool homes, or ad-hoc folders and the user wants one consistent install policy plus reusable first-run path selection rules.
 ---
 
 # AI Home Migration
@@ -11,7 +11,7 @@ It covers the full lifecycle:
 
 - choose long-term install locations
 - migrate existing content into those locations
-- recreate original entry paths as junctions when needed
+- recreate original entry paths as platform-specific bridges when needed
 - install new content into the correct category path
 - maintain local helper files such as the root-level AI home inventory
 
@@ -85,18 +85,18 @@ On the first install or first use on a machine:
 
 If a confirmed local rules file already exists, reuse it and do not override it with generic defaults unless the user explicitly changes paths.
 
-If the user later changes any confirmed path, automatically perform the needed migration and junction updates.
+If the user later changes any confirmed path, automatically perform the needed migration and bridge updates.
 
 ## Quick Start Workflow
 
 1. Confirm whether a local placement file already exists.
 2. If no local placement file exists, propose OS-aware defaults and ask the user to confirm or change them.
 3. Inventory the current state before changing anything.
-4. Classify each source path as direct-move, copy-first, backup-plus-junction, or already-done.
+4. Classify each source path as direct-move, copy-first, backup-plus-bridge, or already-done.
 5. Create or verify destination directories.
 6. Migrate or install content into the correct category path.
-7. Recreate expected original paths as junctions when needed.
-8. Validate junction targets and destination contents.
+7. Recreate expected original paths as platform-specific bridges when needed.
+8. Validate bridge targets and destination contents.
 9. Create or update local helper files:
    - `references/placement-rules-local.md`
    - `<confirmed-ai-home-root>/ai-home-inventory.md`
@@ -135,16 +135,16 @@ Check common source or entry paths such as:
 Record for each path:
 
 - whether it exists
-- whether it is already a junction
+- whether it is already a bridge
 - child count
-- junction target when present
+- bridge target when present
 - whether it appears to be actively referenced
 
 Do not assume everything lives under `~/.codex`. Claude-related content may live in both user-level `~/.claude*` paths and project-level `.claude/`, `CLAUDE.md`, `CLAUDE.local.md`, and `.mcp.json` paths. Third-party tools may use `~/.agents` or their own hidden home directories.
 
 ## Migration Strategy Rules
 
-### Direct Move + Junction
+### Direct Move + Bridge
 
 Use when:
 
@@ -155,7 +155,7 @@ Use when:
 Steps:
 
 1. move the real directory to the destination category path
-2. create a junction at the original path if that entry path must keep working
+2. create a platform-specific bridge at the original path if that entry path must keep working
 3. verify child counts and target resolution
 
 ### Copy First + Repoint Entry Links
@@ -188,7 +188,7 @@ Always read `references/cross-platform-bridge-rules.md` before creating, replaci
 
 Do not broadly bridge private runtime state such as sessions, history, shell snapshots, local settings, or project-owned `.claude/` content without confirming that the user wants that exact behavior.
 
-### Backup + Junction
+### Backup + Bridge
 
 Use when:
 
@@ -199,7 +199,7 @@ Use when:
 Steps:
 
 1. preserve the old directory as a backup under the unified root
-2. create the intended junction only after confirming the new target is valid
+2. create the intended platform-specific bridge only after confirming the new target is valid
 3. tell the user the backup still exists
 
 ## New Install Rule
@@ -219,7 +219,7 @@ For Claude-specific installs:
 - treat `.claude/settings.local.json`, `CLAUDE.local.md`, and user `~/.claude.json` as local/private state unless the user explicitly asks to migrate or back them up
 - treat `.claude/settings.json`, `.claude/agents/`, `.claude/commands/`, `.claude/rules/`, `CLAUDE.md`, `.claude/CLAUDE.md`, and `.mcp.json` as project-shareable only after confirming they belong to that repository
 
-If a tool creates both a repo home and a separate launcher path, store the real repo under `user_plugin/<tool-name>` and recreate the launcher path as a junction.
+If a tool creates both a repo home and a separate launcher path, store the real repo under `user_plugin/<tool-name>` and recreate the launcher path as a platform-specific bridge.
 
 ## Local File Rules
 
@@ -248,7 +248,7 @@ It must summarize every confirmed category, not only normal skills:
 - `user_plugin`
 - `agent-config`
 - plugin cache roots or plugin bundles when they are user-visible under the confirmed home
-- backup directories and legacy entry junctions created by this migration policy
+- backup directories and legacy entry bridges created by this migration policy
 
 Required behavior after any install, migration, rename, or cleanup:
 
@@ -303,7 +303,7 @@ If native binaries or caches are locked:
 
 Always tell the user which state each category ended in:
 
-- fully migrated and junctioned
+- fully migrated and bridged
 - copied and repointed, original retained
 - partially prepared, waiting on process locks
 - backed up for later cleanup

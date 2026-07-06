@@ -47,7 +47,7 @@ When `ai-home-migration` runs:
 - total managed entry count
 - per-category counts for `skills`, `agent-skills`, `mcp`, `user_plugin`, and `agent-config`
 - plugin cache roots or plugin bundles when they are user-visible under the confirmed home
-- backup directories and legacy entry junctions created during migration
+- backup directories and legacy entry bridges created during migration
 - concise Chinese purpose hints first, with English purpose notes as secondary context
 - path and invocation example fields where applicable
 

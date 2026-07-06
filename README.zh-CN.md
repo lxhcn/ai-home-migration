@@ -9,7 +9,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 ![Skill](https://img.shields.io/badge/type-agent%20skill-5B8DEF)
 ![Agents](https://img.shields.io/badge/agents-Codex%20%7C%20Claude%20%7C%20OpenAI-20A67A)
-![Windows](https://img.shields.io/badge/Windows-junction%20aware-0078D4)
+![Bridge](https://img.shields.io/badge/bridge-junction%20%7C%20symlink-0078D4)
 ![Inventory](https://img.shields.io/badge/inventory-Chinese--primary%20bilingual-F59E0B)
 
 [English](README.en.md) · [安装](#-安装) · [安装后必须做](#-安装后必须做) · [工作方式](#-工作方式) · [本地清单](#-本地清单)
@@ -31,7 +31,7 @@
 | 🧩 MCP | 用户管理的 MCP bundle、server 和支持目录 |
 | 🛠️ 插件 | 第三方插件仓库、独立工具仓库 |
 | ⚙️ 配置 | 用户可控的 agent prompt、适配元数据和启动配置 |
-| 🧭 旧入口 | 为兼容旧工具保留的 junction 或旧路径 |
+| 🧭 旧入口 | 用跨平台 bridge 保留旧工具入口 |
 
 目标很简单：安装时有规则，迁移时更稳妥，旧入口继续可用，以后新增内容沿用同一套目录策略。
 
@@ -60,12 +60,12 @@ ai-home-migration/
 
 ## ✅ 安装后必须做
 
-安装这个仓库只代表你的 agent 已经能读取 `ai-home-migration` 的规则。它不会在安装瞬间自动迁移目录、修改配置或创建 junction。
+安装这个仓库只代表你的 agent 已经能读取 `ai-home-migration` 的规则。它不会在安装瞬间自动迁移目录、修改配置或创建接引 bridge。
 
 安装完成后，请在 Codex、Claude 或其他兼容 agent 中显式运行一次首次整理：
 
 ```text
-请用 ai-home-migration 检查并整理我的 Codex、Claude、MCP、skills、plugins 路径，把真实内容放到统一 AI home，并为需要兼容的旧入口建立 junction。
+请用 ai-home-migration 检查并整理我的 Codex、Claude、MCP、skills、plugins 路径，把真实内容放到统一 AI home，并为需要兼容的旧入口建立跨平台接引 bridge。
 ```
 
 首次整理会做这些事：
@@ -74,11 +74,11 @@ ai-home-migration/
 | --- | --- |
 | 1. 盘点入口 | 检查 `.codex`、`.claude`、`.agents`、MCP、plugins 和工具仓库路径 |
 | 2. 确认长期目录 | 让你确认 `skills`、`agent-skills`、`mcp`、`user_plugin`、`agent-config` 的最终位置 |
-| 3. 迁移或接引 | 把真实内容放到长期目录，或为旧入口创建 junction / symlink |
+| 3. 迁移或接引 | 把真实内容放到长期目录，或为旧入口创建对应系统的 bridge |
 | 4. 验证路径 | 确认 Codex、Claude 或其他工具仍能从自己熟悉的入口找到内容 |
 | 5. 写入清单 | 更新 `<confirmed-ai-home-root>/ai-home-inventory.md` |
 
-为什么不自动静默处理？因为这一步可能涉及移动目录、备份旧内容、修改工具入口、创建 Windows junction。`ai-home-migration` 会引导并执行这些操作，但应该在你明确触发并确认后进行。
+为什么不自动静默处理？因为这一步可能涉及移动目录、备份旧内容、修改工具入口、创建平台接引（Windows junction 或 macOS/Linux symlink）。`ai-home-migration` 会引导并执行这些操作，但应该在你明确触发并确认后进行。
 
 如果你只想接引 Claude，可以这样说：
 
@@ -109,7 +109,7 @@ ai-home-migration/
    ↓
 盘点 Codex / Claude / agent / MCP / plugin 相关位置
    ↓
-选择直接迁移、先复制再改入口，或备份后建立 junction
+选择直接迁移、先复制再改入口，或备份后建立 bridge
    ↓
 刷新 AI home 根目录总清单
 ```
@@ -128,11 +128,11 @@ ai-home-migration/
 
 ### 🛡️ 更稳妥的迁移方式
 
-根据文件锁和风险，在 `Direct move + junction`、`Copy first + repoint`、`Backup + junction` 之间选择。
+根据文件锁和风险，在 `Direct move + bridge`、`Copy first + repoint`、`Backup + bridge` 之间选择。
 
-### 🪟 Windows junction 友好
+### 🧭 跨平台接引
 
-把真实内容迁到长期目录，同时用 junction 保持旧入口可用。
+把真实内容迁到长期目录，同时用 Windows junction 或 macOS/Linux symlink 保持旧入口可用。
 
 ### 🔁 后续持续维护
 
@@ -179,7 +179,7 @@ D:\2_file\codex-home\ai-home-inventory.md
 | 自装 skills 散落在 `.codex`、`.claude`、`.agents` 和临时目录里 | 有一套确认过的长期目录结构 |
 | 插件仓库藏在各种工具目录里 | 插件仓库进入 `user_plugin` |
 | MCP 内容单独管理 | MCP 内容纳入同一套放置策略 |
-| 旧入口路径容易断 | junction 保持旧入口可用 |
+| 旧入口路径容易断 | bridge 保持旧入口可用 |
 | 没有可复用清单 | 根目录中英对照 `ai-home-inventory.md` |
 
 ## 🧭 默认目录建议
@@ -217,7 +217,7 @@ macOS / Linux 默认建议：
 ```
 
 ```text
-请用 ai-home-migration 把这个插件迁到 user_plugin，并用 junction 保留旧入口。
+请用 ai-home-migration 把这个插件迁到 user_plugin，并用 bridge 保留旧入口。
 ```
 
 ## 📦 公共文件与本地文件
@@ -231,6 +231,7 @@ macOS / Linux 默认建议：
 - `references/placement-rules.md`
 - `references/placement-rules-default.md`
 - `references/agent-compatibility.md`
+- `references/cross-platform-bridge-rules.md`
 - `references/windows-junction-notes.md`
 
 本机生成或维护的运行文件：
@@ -262,6 +263,7 @@ ai-home-migration/
     generic-openai.md
   references/
     agent-compatibility.md
+    cross-platform-bridge-rules.md
     placement-rules.md
     placement-rules-default.md
     windows-junction-notes.md
