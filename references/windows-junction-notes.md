@@ -1,6 +1,6 @@
 # Windows Junction Notes
 
-Use these notes when Codex-home migration on Windows does not behave like a simple move.
+Use these notes when AI-home migration on Windows does not behave like a simple move.
 
 ## Reliable Patterns
 

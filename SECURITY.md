@@ -1,6 +1,6 @@
 # Security Policy
 
-`codex-home-migration` is an operational policy skill. It can guide file moves, junction creation, and path cleanup, so changes should be conservative and easy to audit.
+`ai-home-migration` is an operational policy skill. It can guide file moves, junction creation, and path cleanup, so changes should be conservative and easy to audit.
 
 ## Reporting Issues
 

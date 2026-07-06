@@ -1,11 +1,11 @@
 ---
-name: codex-home-migration
-description: Standardize user-installed Codex content into user-confirmed long-term directories, recreate legacy entry paths as junctions when needed, and maintain local reference files such as the installed-skills cheat sheet. Use when installing, migrating, reorganizing, or cleaning up user-managed `skills`, `agent-skills`, `mcp`, or `user_plugin` content, especially when content is scattered across `~/.codex`, `~/.agents`, third-party tool homes, or ad-hoc folders and the user wants one consistent install policy plus reusable first-run path selection rules.
+name: ai-home-migration
+description: Standardize user-installed AI agent content into user-confirmed long-term directories, recreate legacy entry paths as junctions when needed, and maintain local reference files. Use when installing, migrating, reorganizing, or cleaning up user-managed Codex, Claude, OpenAI-compatible agent, MCP, skill, plugin, or tool content, especially when content is scattered across `~/.codex`, `~/.claude`, `~/.agents`, third-party tool homes, or ad-hoc folders and the user wants one consistent install policy plus reusable first-run path selection rules.
 ---
 
-# Codex Home Migration
+# AI Home Migration
 
-Use this skill as the standing install and migration policy for user-managed Codex content.
+Use this skill as the standing install and migration policy for user-managed AI agent content across Codex, Claude, OpenAI-compatible agents, MCP bundles, and third-party tool repos.
 
 It covers the full lifecycle:
 
@@ -19,6 +19,20 @@ This skill is intentionally split into:
 
 - shareable default policy files that are safe to publish
 - local runtime files that should be created or updated after installation on each machine
+- agent-specific adapter files that explain how Codex, Claude, and generic OpenAI-style agents should invoke the same core workflow
+
+## Agent Compatibility
+
+Treat `SKILL.md` as the canonical execution contract for every agent.
+
+Use adapter files only to help a specific agent load or invoke the skill:
+
+- `agents/openai.yaml`: Codex/OpenAI UI metadata.
+- `agents/claude.md`: Claude-oriented usage and installation notes.
+- `agents/generic-openai.md`: Plain prompt wrapper for generic OpenAI-compatible agents.
+- `references/agent-compatibility.md`: Packaging guidance for maintainers adapting this skill to another agent runtime.
+
+Do not fork the migration rules per agent. If a behavior changes, update the core rule here or in `references/`, then keep adapter files thin.
 
 ## Read These References
 
@@ -42,13 +56,15 @@ Confirm and manage these user-owned categories:
 - `agent-skills`
 - `mcp`
 - `user_plugin`
+- `agent-config`
 
 Use them like this:
 
 - `skills`: normal Codex skill folders containing `SKILL.md`
-- `agent-skills`: agent-facing skill links or tool-generated skill entry points
+- `agent-skills`: agent-facing skill links or tool-generated skill entry points, including Claude-style or OpenAI-style skill entry folders when applicable
 - `mcp`: user-managed MCP bundles or support directories
 - `user_plugin`: third-party plugin repos or standalone tool homes
+- `agent-config`: user-controlled agent configuration files, adapter prompts, or launcher metadata that must stay separate from bundled vendor caches
 
 Do not mix user-installed third-party tools into Codex bundled cache paths unless the user explicitly asks for that.
 
@@ -58,7 +74,7 @@ On the first install or first use on a machine:
 
 1. detect the current operating system
 2. propose OS-appropriate default locations from `references/placement-rules-default.md`
-3. ask the user to confirm the long-term paths for all four categories
+3. ask the user to confirm the long-term paths for all managed categories
 4. if the user still does not specify custom paths, proceed with the proposed defaults
 5. write the confirmed result into `references/placement-rules-local.md` in the installed copy
 
@@ -86,6 +102,23 @@ Check common source or entry paths such as:
 
 - `C:\Users\<user>\.codex\skills`
 - `C:\Users\<user>\.codex\plugins`
+- `C:\Users\<user>\.claude`
+- `C:\Users\<user>\.claude.json`
+- `C:\Users\<user>\.claude\settings.json`
+- `C:\Users\<user>\.claude\CLAUDE.md`
+- `C:\Users\<user>\.claude\skills`
+- `C:\Users\<user>\.claude\commands`
+- `C:\Users\<user>\.claude\agents`
+- project `.claude\settings.json`
+- project `.claude\settings.local.json`
+- project `.claude\skills`
+- project `.claude\commands`
+- project `.claude\agents`
+- project `.claude\rules`
+- project `CLAUDE.md`
+- project `.claude\CLAUDE.md`
+- project `CLAUDE.local.md`
+- project `.mcp.json`
 - `C:\Users\<user>\.agents\skills`
 - `C:\Users\<user>\.codex\mcp`
 - `C:\Users\<user>\.codex\mcp_servers`
@@ -101,7 +134,7 @@ Record for each path:
 - junction target when present
 - whether it appears to be actively referenced
 
-Do not assume everything lives under `~/.codex`. Third-party tools may use `~/.agents` or their own hidden home directories.
+Do not assume everything lives under `~/.codex`. Claude-related content may live in both user-level `~/.claude*` paths and project-level `.claude/`, `CLAUDE.md`, `CLAUDE.local.md`, and `.mcp.json` paths. Third-party tools may use `~/.agents` or their own hidden home directories.
 
 ## Migration Strategy Rules
 
@@ -157,6 +190,14 @@ For future user-managed installs:
 - install agent-facing linked skills into the confirmed `agent-skills` path
 - install custom MCP content into the confirmed `mcp` path
 - install third-party plugin repos or standalone tool homes into the confirmed `user_plugin` path
+- install user-controlled adapter prompts or agent config snippets into the confirmed `agent-config` path
+
+For Claude-specific installs:
+
+- put personal Claude skills under the confirmed `skills` path and keep `~/.claude/skills/<skill-name>` working when Claude expects that entry path
+- put project Claude skills under the relevant repository `.claude/skills/` only when they are intentionally project-shared
+- treat `.claude/settings.local.json`, `CLAUDE.local.md`, and user `~/.claude.json` as local/private state unless the user explicitly asks to migrate or back them up
+- treat `.claude/settings.json`, `.claude/agents/`, `.claude/commands/`, `.claude/rules/`, `CLAUDE.md`, `.claude/CLAUDE.md`, and `.mcp.json` as project-shareable only after confirming they belong to that repository
 
 If a tool creates both a repo home and a separate launcher path, store the real repo under `user_plugin/<tool-name>` and recreate the launcher path as a junction.
 

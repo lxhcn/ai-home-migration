@@ -1,6 +1,6 @@
 # Contributing
 
-Thanks for improving `codex-home-migration`.
+Thanks for improving `ai-home-migration`.
 
 This repository is intentionally small. Contributions should keep the skill focused on one job: standardizing user-managed Codex content paths while preserving compatibility with legacy entry paths.
 

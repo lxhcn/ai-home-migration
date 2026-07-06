@@ -1,60 +1,72 @@
-# codex-home-migration
+# ai-home-migration
 
 English | [Simplified Chinese](README.zh-CN.md)
 
-Make Codex installs clean, predictable, and reusable.
+Make AI agent installs clean, predictable, and reusable.
 
-`codex-home-migration` is a Codex skill for standardizing user-installed `skills`, `agent-skills`, `mcp`, and `user_plugin` assets into long-term directories, preserving legacy entry paths with junctions, and turning one-off cleanup into a repeatable install policy.
+`ai-home-migration` is a multi-agent skill package for standardizing user-installed Codex, Claude, OpenAI-compatible agent, MCP, skill, and plugin assets into long-term directories, preserving legacy entry paths with junctions, and turning one-off cleanup into a repeatable install policy.
 
 ## At a Glance
 
-- First-run path confirmation for `skills`, `agent-skills`, `mcp`, and `user_plugin`
+- First-run path confirmation for `skills`, `agent-skills`, `mcp`, `user_plugin`, and `agent-config`
+- Adapter files for Codex/OpenAI, Claude, and generic OpenAI-compatible agents
 - OS-aware default paths for Windows, macOS, and Linux
 - Safer migration patterns for locked repos, plugin homes, and legacy launcher paths
 - Windows-aware handling for junctions, `.git` locks, and native plugin binaries
 - Clear split between shareable repository files and machine-specific runtime files
-- Reusable install policy for every future user-managed Codex asset
+- Reusable install policy for every future user-managed AI agent asset
 
 ## Install
 
-Install or copy this repository as a Codex skill named `codex-home-migration`, keeping the repository layout intact:
+Install or copy this repository as a skill package named `ai-home-migration`, keeping the repository layout intact:
 
 ```text
-codex-home-migration/
+ai-home-migration/
   SKILL.md
   agents/openai.yaml
+  agents/claude.md
+  agents/generic-openai.md
   references/
 ```
 
-On first use, the skill should ask you to confirm the long-term paths for `skills`, `agent-skills`, `mcp`, and `user_plugin`. It should then create local runtime files in your installed copy, not in the shared repository baseline.
+Use the entry point that matches your runtime:
+
+- Codex / OpenAI skill surfaces: use `SKILL.md` plus `agents/openai.yaml`
+- Claude-style surfaces: read `agents/claude.md`, which points back to `SKILL.md`
+- Generic OpenAI-compatible agents: use the prompt wrapper in `agents/generic-openai.md`
+
+On first use, the skill should ask you to confirm the long-term paths for `skills`, `agent-skills`, `mcp`, `user_plugin`, and `agent-config`. It should then create local runtime files in your installed copy, not in the shared repository baseline.
 
 ## Why This Project Matters
 
-Many Codex environments slowly become difficult to manage:
+Many AI agent environments slowly become difficult to manage:
 
-- custom skills are scattered across multiple folders
+- custom Codex or Claude skills are scattered across multiple folders
+- Claude Code user and project configuration can span `~/.claude`, `~/.claude.json`, `.claude/`, `.mcp.json`, and `CLAUDE.md` files
 - plugin repos live inside hidden tool homes
 - MCP bundles are stored separately from the rest of the setup
+- generic agent prompts and adapter files land in ad-hoc locations
 - old entry paths still need to work
 - Windows file locks make cleanup risky
 
 Most users solve this once, manually, and then repeat the same messy decisions later.
 
-`codex-home-migration` exists to turn that chaos into a durable operating policy.
+`ai-home-migration` exists to turn that chaos into a durable operating policy.
 
 ## Who This Is For
 
-- Codex users installing third-party skills from GitHub
-- Users moving Codex assets off the system drive
+- Codex, Claude, and OpenAI-compatible agent users installing third-party skills from GitHub
+- Users moving AI agent assets off the system drive
 - Windows-heavy setups dealing with junctions and locked files
 - Users who want future installs to follow one clean directory policy
-- Power users maintaining `skills`, `agent-skills`, MCP assets, and plugin repos over time
+- Power users maintaining `skills`, `agent-skills`, MCP assets, agent prompts, and plugin repos over time
 
 ## Before / After
 
 Before:
 
 - custom skills in `.codex`
+- Claude or generic agent instructions in separate hidden folders
 - agent links in `.agents`
 - plugin repos in hidden folders
 - MCP content in separate locations
@@ -64,6 +76,7 @@ After:
 
 - one confirmed long-term layout
 - category-based install rules
+- thin adapters for Codex, Claude, and generic OpenAI-compatible agents
 - safer migration choices per path
 - legacy entry paths preserved when needed
 - future installs follow the same structure automatically
@@ -72,7 +85,7 @@ After:
 
 ### 1. Placement Policy
 
-Define one durable home for user-managed Codex content instead of solving every install case manually.
+Define one durable home for user-managed AI agent content instead of solving every install case manually.
 
 ### 2. First-Run Setup
 
@@ -93,6 +106,7 @@ Reuse previously confirmed local paths, regenerate local runtime files when need
 ## Common Problems It Solves
 
 - "My Codex skills are scattered across too many places."
+- "I want the same migration skill to work in Claude and OpenAI-compatible agents."
 - "I want to move installs to another drive without breaking old paths."
 - "A plugin still depends on its original launcher folder."
 - "Windows says the repo or native file is locked."
@@ -116,7 +130,7 @@ On the first install or first use, the skill should:
 1. Detect the operating system.
 2. Propose OS-aware default paths.
 3. Tell the user those defaults can be changed.
-4. Ask the user to confirm paths for `skills`, `agent-skills`, `mcp`, and `user_plugin`.
+4. Ask the user to confirm paths for `skills`, `agent-skills`, `mcp`, `user_plugin`, and `agent-config`.
 5. If the user does not override them, continue with the proposed defaults.
 6. Save the confirmed result into a local placement file for later reuse.
 
@@ -130,6 +144,7 @@ Windows defaults:
 - `C:\Users\<user>\ai_tools\agent-skills`
 - `C:\Users\<user>\ai_tools\mcp`
 - `C:\Users\<user>\ai_tools\user_plugin`
+- `C:\Users\<user>\ai_tools\agent-config`
 
 macOS / Linux defaults:
 
@@ -137,6 +152,7 @@ macOS / Linux defaults:
 - `~/ai_tools/agent-skills`
 - `~/ai_tools/mcp`
 - `~/ai_tools/user_plugin`
+- `~/ai_tools/agent-config`
 
 ## Migration Model
 
@@ -156,6 +172,8 @@ Windows-specific safety rules live in [references/windows-junction-notes.md](ref
 ## Example Use Cases
 
 - Consolidate custom skills from multiple folders into one long-term skills directory
+- Inventory Claude Code user and project paths, including `~/.claude/skills`, `.claude/skills`, `.claude/commands`, `.claude/agents`, `.claude/settings*.json`, `.mcp.json`, and `CLAUDE.md`
+- Package the same migration policy for Codex, Claude, and generic OpenAI-compatible agents
 - Move a third-party plugin repo into `user_plugin` without breaking the tool's launcher path
 - Standardize `agent-skills` and MCP bundles before sharing a Codex setup with teammates
 - Re-home user-managed assets to another drive while preserving old entry points
@@ -164,25 +182,25 @@ Windows-specific safety rules live in [references/windows-junction-notes.md](ref
 ## Quick Examples
 
 ```text
-Use codex-home-migration to install this skill into my long-term skills directory and keep any expected old path working.
+Use ai-home-migration to install this skill into my long-term skills directory and keep any expected old path working.
 ```
 
 ```text
-Use codex-home-migration to standardize my Codex setup and tell me what should move, what should stay, and what should become a junction.
+Use ai-home-migration to standardize my Codex, Claude, MCP, and agent-tool setup and tell me what should move, what should stay, and what should become a junction.
 ```
 
 ## Recommended Prompts
 
 ```text
-Use codex-home-migration to install this skill and place it using the unified directory policy.
+Use ai-home-migration to install this skill and place it using the unified directory policy.
 ```
 
 ```text
-Use codex-home-migration to inspect my current skills, agent-skills, mcp, and user_plugin layout and tell me what should be migrated.
+Use ai-home-migration to inspect my current skills, agent-skills, mcp, user_plugin, and agent-config layout and tell me what should be migrated.
 ```
 
 ```text
-Use codex-home-migration to move this plugin into user_plugin and keep the old entry path working with a junction.
+Use ai-home-migration to move this plugin into user_plugin and keep the old entry path working with a junction.
 ```
 
 ## Shareable Files vs Local Runtime Files
@@ -193,8 +211,11 @@ Shareable files:
 
 - `SKILL.md`
 - `agents/openai.yaml`
+- `agents/claude.md`
+- `agents/generic-openai.md`
 - `references/placement-rules.md`
 - `references/placement-rules-default.md`
+- `references/agent-compatibility.md`
 - `references/windows-junction-notes.md`
 
 Local runtime files created after installation:
@@ -207,7 +228,7 @@ Those local runtime files should not be committed as universal defaults because 
 ## Repository Layout
 
 ```text
-codex-home-migration/
+ai-home-migration/
   SKILL.md
   README.md
   README.zh-CN.md
@@ -220,7 +241,10 @@ codex-home-migration/
   SECURITY.md
   agents/
     openai.yaml
+    claude.md
+    generic-openai.md
   references/
+    agent-compatibility.md
     placement-rules.md
     placement-rules-default.md
     windows-junction-notes.md
@@ -233,6 +257,15 @@ codex-home-migration/
 
 - `agents/openai.yaml`
   UI metadata for Codex.
+
+- `agents/claude.md`
+  Claude-oriented prompt wrapper and usage notes.
+
+- `agents/generic-openai.md`
+  Prompt wrapper for generic OpenAI-compatible agents.
+
+- `references/agent-compatibility.md`
+  Cross-agent packaging guidance for Codex, Claude, and generic OpenAI-compatible runtimes.
 
 - `references/placement-rules.md`
   Explains how default rules and local runtime files work together.
@@ -263,7 +296,7 @@ codex-home-migration/
 
 ## Discoverability Notes
 
-This repository intentionally emphasizes search-friendly terms such as `Codex`, `skills`, `agent-skills`, `MCP`, `plugin`, `migration`, `Windows`, and `junction`, because those are the exact problems users usually search for when they need this workflow.
+This repository intentionally emphasizes search-friendly terms such as `Codex`, `Claude`, `OpenAI`, `AI agent`, `skills`, `agent-skills`, `MCP`, `plugin`, `migration`, `Windows`, and `junction`, because those are the exact problems users usually search for when they need this workflow.
 
 ## Notes
 

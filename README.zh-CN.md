@@ -1,32 +1,41 @@
-# codex-home-migration
+# ai-home-migration
 
 [English](README.md) | 简体中文
 
-让 Codex 的自装内容从“越装越乱”变成“长期可维护”。
+让 Codex、Claude 和 OpenAI 兼容代理的自装内容从“越装越乱”变成“长期可维护”。
 
-`codex-home-migration` 是一个 Codex skill，用来统一管理用户自己的 `skills`、`agent-skills`、`mcp` 和 `user_plugin` 内容，把它们放到长期目录中，在需要时保留旧入口路径的 junction，并把一次性的迁移经验沉淀成可复用的安装规则。
+`ai-home-migration` 是一个多代理兼容的 skill 包，用来统一管理用户自己的 Codex、Claude、OpenAI 兼容代理、MCP、skills、plugins 和工具仓库内容，把它们放到长期目录中，在需要时保留旧入口路径的 junction，并把一次性的迁移经验沉淀成可复用的安装规则。
 
 ## 快速看点
 
-- 首次运行时确认 `skills`、`agent-skills`、`mcp`、`user_plugin` 的长期路径
+- 首次运行时确认 `skills`、`agent-skills`、`mcp`、`user_plugin`、`agent-config` 的长期路径
+- 提供 Codex/OpenAI、Claude、通用 OpenAI 兼容代理三类适配入口
 - 按 Windows、macOS、Linux 自动给出默认建议目录
 - 为锁文件仓库、插件目录、旧入口路径提供更稳妥的迁移方式
 - 专门考虑 Windows 下 junction、`.git` 占用和原生插件文件锁问题
 - 明确区分“可分享的仓库文件”和“本机私有运行文件”
-- 后续所有自装内容都能继续沿用同一套目录规则
+- 后续所有 AI 代理自装内容都能继续沿用同一套目录规则
 
 ## 安装方式
 
-把这个仓库安装或复制为名为 `codex-home-migration` 的 Codex skill，并保持仓库结构不变：
+把这个仓库安装或复制为名为 `ai-home-migration` 的多代理 skill 包，并保持仓库结构不变：
 
 ```text
-codex-home-migration/
+ai-home-migration/
   SKILL.md
   agents/openai.yaml
+  agents/claude.md
+  agents/generic-openai.md
   references/
 ```
 
-首次使用时，skill 应该先让你确认 `skills`、`agent-skills`、`mcp`、`user_plugin` 四类内容的长期路径。确认后的本机运行文件应写入你自己的安装副本，而不是写进公开仓库默认文件。
+按不同运行环境选择入口：
+
+- Codex / OpenAI skill 环境：使用 `SKILL.md` 和 `agents/openai.yaml`
+- Claude 环境：阅读 `agents/claude.md`，它会指回核心 `SKILL.md`
+- 通用 OpenAI 兼容代理：使用 `agents/generic-openai.md` 里的 prompt wrapper
+
+首次使用时，skill 应该先让你确认 `skills`、`agent-skills`、`mcp`、`user_plugin`、`agent-config` 五类内容的长期路径。确认后的本机运行文件应写入你自己的安装副本，而不是写进公开仓库默认文件。
 
 ## 为什么这个项目值得关注
 
@@ -40,15 +49,16 @@ codex-home-migration/
 
 大多数人会手动解决一次，但下次安装时又重新重复同样的混乱决策。
 
-`codex-home-migration` 的价值，就是把这种一次性的整理经验，变成一套长期可复用的规则。
+`ai-home-migration` 的价值，就是把这种一次性的整理经验，变成一套长期可复用的规则。
 
 ## 适合谁用
 
-- 经常从 GitHub 安装第三方 Codex skill 的用户
-- 想把 Codex 内容迁移到别的磁盘的用户
-- 主要在 Windows 上维护 Codex 环境的用户
+- 经常从 GitHub 安装第三方 Codex、Claude 或通用 agent skill 的用户
+- 想把 AI 代理内容迁移到别的磁盘的用户
+- 主要在 Windows 上维护 AI 代理环境的用户
 - 希望以后每次安装都按统一规则落盘的用户
 - 长期维护 `skills`、`agent-skills`、MCP 和插件仓库的重度使用者
+- 需要同时整理 Claude Code 的 `~/.claude`、`~/.claude.json`、项目 `.claude/`、`.mcp.json`、`CLAUDE.md` 等路径的用户
 
 ## 迁移前后对比
 
@@ -164,25 +174,25 @@ Windows 下的具体安全注意事项见 [references/windows-junction-notes.md]
 ## 快速示例
 
 ```text
-请用 codex-home-migration 把这个 skill 安装到我的长期 skills 目录，并保留需要兼容的旧路径。
+请用 ai-home-migration 把这个 skill 安装到我的长期 skills 目录，并保留需要兼容的旧路径。
 ```
 
 ```text
-请用 codex-home-migration 统一整理我的 Codex 环境，并告诉我哪些该迁移、哪些该保留、哪些该做 junction。
+请用 ai-home-migration 统一整理我的 Codex 环境，并告诉我哪些该迁移、哪些该保留、哪些该做 junction。
 ```
 
 ## 推荐调用方式
 
 ```text
-请用 codex-home-migration 安装这个 skill，并按统一目录规则处理。
+请用 ai-home-migration 安装这个 skill，并按统一目录规则处理。
 ```
 
 ```text
-请用 codex-home-migration 检查我现在的 skills、agent-skills、mcp、user_plugin 应该迁移到哪里。
+请用 ai-home-migration 检查我现在的 skills、agent-skills、mcp、user_plugin 应该迁移到哪里。
 ```
 
 ```text
-请用 codex-home-migration 把这个插件装到 user_plugin，并保留旧入口联接。
+请用 ai-home-migration 把这个插件装到 user_plugin，并保留旧入口联接。
 ```
 
 ## 仓库文件与本地文件的区别
@@ -193,8 +203,11 @@ Windows 下的具体安全注意事项见 [references/windows-junction-notes.md]
 
 - `SKILL.md`
 - `agents/openai.yaml`
+- `agents/claude.md`
+- `agents/generic-openai.md`
 - `references/placement-rules.md`
 - `references/placement-rules-default.md`
+- `references/agent-compatibility.md`
 - `references/windows-junction-notes.md`
 
 安装后在本机生成或维护的运行文件：
@@ -207,7 +220,7 @@ Windows 下的具体安全注意事项见 [references/windows-junction-notes.md]
 ## 仓库结构
 
 ```text
-codex-home-migration/
+ai-home-migration/
   SKILL.md
   README.md
   README.zh-CN.md
@@ -220,7 +233,10 @@ codex-home-migration/
   SECURITY.md
   agents/
     openai.yaml
+    claude.md
+    generic-openai.md
   references/
+    agent-compatibility.md
     placement-rules.md
     placement-rules-default.md
     windows-junction-notes.md
@@ -233,6 +249,15 @@ codex-home-migration/
 
 - `agents/openai.yaml`
   Codex 界面展示元数据。
+
+- `agents/claude.md`
+  面向 Claude 的使用入口和 prompt 包装说明。
+
+- `agents/generic-openai.md`
+  面向通用 OpenAI 兼容代理的 prompt 包装说明。
+
+- `references/agent-compatibility.md`
+  Codex、Claude、OpenAI 兼容代理之间的跨运行时打包说明。
 
 - `references/placement-rules.md`
   说明默认规则与本地运行文件如何配合。
@@ -257,7 +282,7 @@ codex-home-migration/
 
 ## 可发现性说明
 
-这个仓库在标题、描述和 README 中故意强调了 `Codex`、`skills`、`agent-skills`、`MCP`、`plugin`、`migration`、`Windows`、`junction` 等关键词，因为这些正是目标用户最可能搜索的问题词。
+这个仓库在标题、描述和 README 中故意强调了 `Codex`、`Claude`、`OpenAI`、`AI agent`、`skills`、`agent-skills`、`MCP`、`plugin`、`migration`、`Windows`、`junction` 等关键词，因为这些正是目标用户最可能搜索的问题词。
 
 ## 说明
 

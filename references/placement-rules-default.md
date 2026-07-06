@@ -1,6 +1,6 @@
 # Placement Rules Default
 
-Use this file as the shareable default placement policy for `codex-home-migration`.
+Use this file as the shareable default placement policy for `ai-home-migration`.
 
 ## Purpose
 
@@ -19,6 +19,7 @@ On first use:
    - `agent-skills`
    - `mcp`
    - `user_plugin`
+   - `agent-config`
 5. if the user still does not provide custom paths, continue with the suggested defaults
 
 Do not silently assume a final storage layout before this step.
@@ -31,6 +32,7 @@ Do not silently assume a final storage layout before this step.
 - `C:\Users\<user>\ai_tools\agent-skills`
 - `C:\Users\<user>\ai_tools\mcp`
 - `C:\Users\<user>\ai_tools\user_plugin`
+- `C:\Users\<user>\ai_tools\agent-config`
 
 ### macOS default
 
@@ -38,6 +40,7 @@ Do not silently assume a final storage layout before this step.
 - `~/ai_tools/agent-skills`
 - `~/ai_tools/mcp`
 - `~/ai_tools/user_plugin`
+- `~/ai_tools/agent-config`
 
 ### Linux default
 
@@ -45,6 +48,7 @@ Do not silently assume a final storage layout before this step.
 - `~/ai_tools/agent-skills`
 - `~/ai_tools/mcp`
 - `~/ai_tools/user_plugin`
+- `~/ai_tools/agent-config`
 
 These are suggested defaults only. The installed copy should store the final confirmed values in a local placement file.
 
@@ -52,12 +56,13 @@ These are suggested defaults only. The installed copy should store the final con
 
 Use this concise structure:
 
-`I can standardize your user-installed Codex content into long-term folders. Based on your current operating system, my suggested defaults are:`
+`I can standardize your user-installed AI agent content into long-term folders. Based on your current operating system, my suggested defaults are:`
 
 `- skills: <default-skills-path>`
 `- agent-skills: <default-agent-skills-path>`
 `- mcp: <default-mcp-path>`
 `- user_plugin: <default-user-plugin-path>`
+`- agent-config: <default-agent-config-path>`
 
 `You can keep these defaults or change any of them. If you do not specify different paths, I will use these defaults and continue.`
 

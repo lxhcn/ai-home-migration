@@ -2,20 +2,23 @@
 
 ## Suggested Repository Name
 
-`codex-home-migration`
+`ai-home-migration`
 
 ## Suggested Short Description
 
-Standardize user-installed Codex skills, agent-skills, MCP bundles, and plugin repos into long-term directories with safe migration rules and legacy path junction support.
+Standardize user-installed Codex, Claude, OpenAI-compatible agent, MCP, skill, and plugin content into long-term directories with safe migration rules and legacy path support.
 
 ## Suggested Tagline
 
-Reusable Codex home migration policy for clean installs, safe moves, and future-proof path management.
+Reusable AI agent home migration policy for clean installs, safe moves, and future-proof path management.
 
 ## Suggested Topics
 
 - `codex`
+- `claude`
+- `openai`
 - `skill`
+- `ai-agent`
 - `migration`
 - `windows`
 - `junction`
@@ -27,12 +30,12 @@ Reusable Codex home migration policy for clean installs, safe moves, and future-
 
 ## Suggested Social Preview Text
 
-Bring order to scattered Codex installs. `codex-home-migration` helps users standardize custom skills, plugins, agent-skills, and MCP assets into durable directories with safer Windows-aware migration workflows.
+Bring order to scattered AI agent installs. `ai-home-migration` helps users standardize custom Codex, Claude, OpenAI-compatible, MCP, plugin, and agent-skill assets into durable directories with safer Windows-aware migration workflows.
 
 ## Suggested First Release Title
 
-`v1.0.0 - Public baseline for Codex home migration policy`
+`v1.0.0 - Public baseline for AI home migration policy`
 
 ## Suggested First Release Summary
 
-This first public release packages `codex-home-migration` as a reusable Codex skill for standardizing user-installed content. It includes first-run path confirmation, OS-aware default placement rules, Windows junction safety guidance, bilingual documentation, and a clean separation between shareable policy files and machine-specific runtime state.
+This first public release packages `ai-home-migration` as a reusable multi-agent skill for standardizing user-installed content across Codex, Claude, OpenAI-compatible agents, MCP bundles, and plugin repos. It includes first-run path confirmation, OS-aware default placement rules, Windows junction safety guidance, bilingual documentation, and a clean separation between shareable policy files and machine-specific runtime state.
