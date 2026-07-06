@@ -12,7 +12,7 @@
 ![Windows](https://img.shields.io/badge/Windows-junction%20aware-0078D4)
 ![Inventory](https://img.shields.io/badge/inventory-Chinese--primary%20bilingual-F59E0B)
 
-[English](README.md) · [安装](#-安装) · [工作方式](#-工作方式) · [本地清单](#-本地清单) · [仓库结构](#-仓库结构)
+[English](README.en.md) · [安装](#-安装) · [工作方式](#-工作方式) · [本地清单](#-本地清单) · [仓库结构](#-仓库结构)
 
 </div>
 
@@ -207,6 +207,7 @@ macOS / Linux 默认建议：
 ai-home-migration/
   SKILL.md
   README.md
+  README.en.md
   README.zh-CN.md
   .gitignore
   .gitattributes

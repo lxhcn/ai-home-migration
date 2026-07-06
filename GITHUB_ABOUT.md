@@ -6,7 +6,7 @@
 
 ## Suggested Short Description
 
-Standardize user-installed Codex, Claude, OpenAI-compatible agent, MCP, skill, and plugin content into long-term directories with safe migration rules and legacy path support.
+Organize Codex, Claude Code, MCP, skills, plugins, and AI-agent tools into one clean local home with safe migration rules and legacy path support. 整理 Codex、Claude、MCP、skills 和插件到统一 AI home。
 
 ## Suggested Tagline
 
@@ -14,19 +14,26 @@ Reusable AI agent home migration policy for clean installs, safe moves, and futu
 
 ## Suggested Topics
 
-- `codex`
-- `claude`
-- `openai`
-- `skill`
 - `ai-agent`
+- `agent-tools`
+- `developer-tools`
+- `codex`
+- `openai-codex`
+- `claude`
+- `claude-code`
+- `mcp`
+- `model-context-protocol`
+- `skills`
+- `agent-skills`
+- `plugins`
+- `plugin-management`
 - `migration`
+- `dotfiles`
 - `windows`
 - `junction`
-- `developer-tools`
-- `ai-tools`
-- `mcp`
-- `agent-skills`
-- `plugin-management`
+- `symlink`
+- `local-first`
+- `workflow-automation`
 
 ## Suggested Social Preview Text
 

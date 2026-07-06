@@ -2,9 +2,9 @@
 
 # 🏠 ai-home-migration
 
-**A multi-agent home organizer for Codex, Claude, OpenAI-compatible agents, MCP, skills, plugins, and tool repos.**
+**给 Codex、Claude、OpenAI 兼容 agent、MCP、skills、plugins 和工具仓库用的 AI home 整理器。**
 
-Make AI agent installs clean, predictable, portable, and reusable.
+让 AI agent 的自装内容不再越装越乱，而是可迁移、可复用、可长期维护。
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 ![Skill](https://img.shields.io/badge/type-agent%20skill-5B8DEF)
@@ -12,32 +12,32 @@ Make AI agent installs clean, predictable, portable, and reusable.
 ![Windows](https://img.shields.io/badge/Windows-junction%20aware-0078D4)
 ![Inventory](https://img.shields.io/badge/inventory-Chinese--primary%20bilingual-F59E0B)
 
-[简体中文](README.zh-CN.md) · [Install](#-install) · [How It Works](#-how-it-works) · [Inventory](#-local-inventory) · [Repository Layout](#-repository-layout)
+[English](README.en.md) · [安装](#-安装) · [工作方式](#-工作方式) · [本地清单](#-本地清单) · [仓库结构](#-仓库结构)
 
 </div>
 
 ---
 
-## ✨ What It Does
+## ✨ 它做什么
 
-`ai-home-migration` turns scattered AI-agent assets into one durable home layout.
+`ai-home-migration` 会把散落在不同目录里的 AI agent 自装内容，整理进一套长期稳定的目录规则。
 
-It helps you standardize:
+它覆盖：
 
-| Area | What Gets Managed |
+| 分类 | 管理内容 |
 | --- | --- |
-| 🧠 Skills | Codex skills, Claude-style skills, and generic OpenAI-compatible skill packages |
-| 🔗 Agent entries | `agent-skills` links and tool-generated agent entry points |
-| 🧩 MCP | User-managed MCP bundles, servers, and support directories |
-| 🛠️ Plugins | Third-party plugin repos and standalone tool homes |
-| ⚙️ Config | User-controlled agent prompts, adapter metadata, and launcher config |
-| 🧭 Legacy paths | Junctions or compatibility paths that keep older tools working |
+| 🧠 Skills | Codex skills、Claude 风格 skills、通用 OpenAI 兼容 skill 包 |
+| 🔗 Agent 入口 | `agent-skills` 链接、工具生成的 agent 入口 |
+| 🧩 MCP | 用户管理的 MCP bundle、server 和支持目录 |
+| 🛠️ 插件 | 第三方插件仓库、独立工具仓库 |
+| ⚙️ 配置 | 用户可控的 agent prompt、适配元数据和启动配置 |
+| 🧭 旧入口 | 为兼容旧工具保留的 junction 或旧路径 |
 
-The goal is simple: install once, migrate safely, keep old entry paths working, and make future installs follow the same rule.
+目标很简单：安装时有规则，迁移时更稳妥，旧入口继续可用，以后新增内容沿用同一套目录策略。
 
-## 🚀 Install
+## 🚀 安装
 
-Install or copy this repository as a skill package named `ai-home-migration`:
+把这个仓库安装或复制为名叫 `ai-home-migration` 的 skill 包，并保持结构不变：
 
 ```text
 ai-home-migration/
@@ -48,103 +48,103 @@ ai-home-migration/
   references/
 ```
 
-Use the entry point that matches your runtime:
+按运行环境选择入口：
 
-| Runtime | Entry Point |
+| 运行环境 | 入口文件 |
 | --- | --- |
-| Codex / OpenAI skill surfaces | `SKILL.md` plus `agents/openai.yaml` |
-| Claude-style surfaces | `agents/claude.md`, which points back to `SKILL.md` |
-| Generic OpenAI-compatible agents | prompt wrapper in `agents/generic-openai.md` |
+| Codex / OpenAI skill 环境 | `SKILL.md` 和 `agents/openai.yaml` |
+| Claude 风格环境 | `agents/claude.md`，它会指回核心 `SKILL.md` |
+| 通用 OpenAI 兼容 agent | `agents/generic-openai.md` 里的 prompt wrapper |
 
-On first use, the skill asks you to confirm long-term paths for `skills`, `agent-skills`, `mcp`, `user_plugin`, and `agent-config`.
+首次使用时，skill 会让你确认 `skills`、`agent-skills`、`mcp`、`user_plugin` 和 `agent-config` 的长期路径。
 
-## 🧭 How It Works
+## 🧭 工作方式
 
 ```text
-Detect OS
+识别操作系统
    ↓
-Suggest default long-term folders
+给出默认长期目录建议
    ↓
-Ask you to confirm or change paths
+让你确认或修改路径
    ↓
-Inventory current Codex / Claude / agent / MCP / plugin locations
+盘点 Codex / Claude / agent / MCP / plugin 相关位置
    ↓
-Choose direct move, copy-first repoint, or backup + junction
+选择直接迁移、先复制再改入口，或备份后建立 junction
    ↓
-Refresh the root AI home inventory
+刷新 AI home 根目录总清单
 ```
 
-The skill keeps shareable policy files separate from machine-specific runtime state. That means the repository stays reusable, while each computer keeps its own confirmed paths.
+这个 skill 会把“可公开分享的策略文件”和“某台机器自己的运行状态”分开。仓库保持通用，本机路径和清单留在本机。
 
-## 🧰 Core Capabilities
+## 🧰 核心能力
 
-### 📍 Placement Policy
+### 📍 目录策略统一
 
-Define one durable home for user-managed AI agent content instead of deciding manually on every install.
+给用户自装的 AI agent 内容建立长期归属，而不是每次安装都临时判断。
 
-### 🧪 First-Run Setup
+### 🧪 首次配置引导
 
-Prompt for long-term paths before migration starts, with sensible OS-aware defaults.
+迁移前先确认长期路径，同时提供按系统匹配的默认建议。
 
-### 🛡️ Safer Migration
+### 🛡️ 更稳妥的迁移方式
 
-Choose between `Direct move + junction`, `Copy first + repoint`, and `Backup + junction` based on file locks and risk.
+根据文件锁和风险，在 `Direct move + junction`、`Copy first + repoint`、`Backup + junction` 之间选择。
 
-### 🪟 Windows-Aware Junctions
+### 🪟 Windows junction 友好
 
-Preserve legacy entry paths while moving real content to a cleaner long-term location.
+把真实内容迁到长期目录，同时用 junction 保持旧入口可用。
 
-### 🔁 Ongoing Maintenance
+### 🔁 后续持续维护
 
-Reuse confirmed paths, refresh the inventory, and keep future installs consistent.
+复用已确认路径，刷新本地清单，让未来安装保持一致。
 
-## 📚 Local Inventory
+## 📚 本地清单
 
-The canonical local inventory lives at:
+规范的本地总清单位于：
 
 ```text
 <confirmed-ai-home-root>/ai-home-inventory.md
 ```
 
-For example:
+例如：
 
 ```text
 D:\2_file\codex-home\ai-home-inventory.md
 ```
 
-It is a Chinese-primary bilingual quick reference. It includes:
+它是中文为主、中英对照的速查表，包含：
 
-- total managed entry count
-- per-category counts
-- Chinese purpose first, English purpose second
-- path for every listed entry
-- invocation examples when applicable
-- excluded support folders such as `.system`
+- 受管条目总数
+- 各分类数量
+- 中文用途优先，英文用途辅助
+- 每个条目的路径
+- 适用时提供调用示例
+- 被排除的支持目录，例如 `.system`
 
-The historical `references/installed-skills-cheatsheet.md` path is kept only as a compatibility pointer.
+历史路径 `references/installed-skills-cheatsheet.md` 只作为兼容指针保留。
 
-## 🧩 What It Solves
+## 🧩 它解决什么问题
 
-- "My Codex and Claude skills are scattered everywhere."
-- "I want the same migration rule to work in Codex, Claude, and OpenAI-compatible agents."
-- "I need to move AI-agent installs to another drive without breaking old paths."
-- "A plugin still expects its original launcher folder."
-- "Windows says a repo, `.git`, or native file is locked."
-- "I do not want to rethink folder placement every time I install a new skill."
+- “我的 Codex 和 Claude skills 到处都是。”
+- “我想让同一套迁移规则同时支持 Codex、Claude 和 OpenAI 兼容 agent。”
+- “我想把 AI agent 内容迁到别的盘，但又怕旧路径失效。”
+- “某个插件还依赖原来的启动目录。”
+- “Windows 提示仓库、`.git` 或原生文件被占用。”
+- “我不想每装一个新 skill 都重新想放哪。”
 
-## 🏗️ Before / After
+## 🏗️ 迁移前后
 
-| Before | After |
+| 迁移前 | 迁移后 |
 | --- | --- |
-| Custom skills scattered across `.codex`, `.claude`, `.agents`, and ad-hoc folders | One confirmed long-term layout |
-| Plugin repos hidden inside tool homes | Plugin repos live under `user_plugin` |
-| MCP content managed separately | MCP content follows the same placement policy |
-| Old entry paths are fragile | Junctions keep legacy entry paths working |
-| No reusable inventory | Root-level bilingual `ai-home-inventory.md` |
+| 自装 skills 散落在 `.codex`、`.claude`、`.agents` 和临时目录里 | 有一套确认过的长期目录结构 |
+| 插件仓库藏在各种工具目录里 | 插件仓库进入 `user_plugin` |
+| MCP 内容单独管理 | MCP 内容纳入同一套放置策略 |
+| 旧入口路径容易断 | junction 保持旧入口可用 |
+| 没有可复用清单 | 根目录中英对照 `ai-home-inventory.md` |
 
-## 🧭 Default Path Policy
+## 🧭 默认目录建议
 
-Windows defaults:
+Windows 默认建议：
 
 ```text
 C:\Users\<user>\ai_tools\skills
@@ -154,7 +154,7 @@ C:\Users\<user>\ai_tools\user_plugin
 C:\Users\<user>\ai_tools\agent-config
 ```
 
-macOS / Linux defaults:
+macOS / Linux 默认建议：
 
 ```text
 ~/ai_tools/skills
@@ -164,25 +164,25 @@ macOS / Linux defaults:
 ~/ai_tools/agent-config
 ```
 
-These are suggestions only. The installed copy stores the final confirmed values in `references/placement-rules-local.md`.
+这些只是建议值。安装副本会把最终确认的路径写入 `references/placement-rules-local.md`。
 
-## 💬 Example Prompts
+## 💬 调用示例
 
 ```text
-Use ai-home-migration to install this skill into my long-term skills directory and keep any expected old path working.
+请用 ai-home-migration 把这个 skill 安装到我的长期 skills 目录，并保留需要兼容的旧路径。
 ```
 
 ```text
-Use ai-home-migration to standardize my Codex, Claude, MCP, and agent-tool setup.
+请用 ai-home-migration 统一整理我的 Codex、Claude、MCP 和 agent 工具环境。
 ```
 
 ```text
-Use ai-home-migration to move this plugin into user_plugin and keep the old entry path working with a junction.
+请用 ai-home-migration 把这个插件迁到 user_plugin，并用 junction 保留旧入口。
 ```
 
-## 📦 Shareable vs Local Files
+## 📦 公共文件与本地文件
 
-Shareable repository files:
+可公开分享的仓库文件：
 
 - `SKILL.md`
 - `agents/openai.yaml`
@@ -193,20 +193,21 @@ Shareable repository files:
 - `references/agent-compatibility.md`
 - `references/windows-junction-notes.md`
 
-Machine-specific runtime files:
+本机生成或维护的运行文件：
 
 - `references/placement-rules-local.md`
 - `<confirmed-ai-home-root>/ai-home-inventory.md`
-- `references/installed-skills-cheatsheet.md` as a compatibility pointer
+- `references/installed-skills-cheatsheet.md`，只作为兼容指针
 
-Local runtime files should not be committed as universal defaults because they contain machine-specific paths and installation state.
+本地运行文件不应该作为公共默认模板提交，因为它们包含某台机器的实际路径和安装状态。
 
-## 🗂️ Repository Layout
+## 🗂️ 仓库结构
 
 ```text
 ai-home-migration/
   SKILL.md
   README.md
+  README.en.md
   README.zh-CN.md
   .gitignore
   .gitattributes
@@ -226,12 +227,12 @@ ai-home-migration/
     windows-junction-notes.md
 ```
 
-## 🔎 Discoverability
+## 🔎 可发现性说明
 
-This repository intentionally uses terms such as `Codex`, `Claude`, `OpenAI`, `AI agent`, `skills`, `agent-skills`, `MCP`, `plugin`, `migration`, `Windows`, and `junction`, because those are the practical problems users search for when their local agent setup starts getting hard to maintain.
+这个仓库刻意保留 `Codex`、`Claude`、`OpenAI`、`AI agent`、`skills`、`agent-skills`、`MCP`、`plugin`、`migration`、`Windows`、`junction` 等关键词，因为它们正是用户在整理本地 agent 环境时最可能搜索的问题词。
 
-## 📝 Notes
+## 📝 说明
 
-- This repository contains the shareable policy layer.
-- Each machine should generate its own confirmed path record after installation.
-- If you distribute this skill, share the repository files and let each user confirm their own long-term paths on first run.
+- 本仓库保存的是可分享的策略层。
+- 每台机器自己的路径确认结果，应当在安装后本地生成。
+- 如果你把这个 skill 分享给别人，分享仓库文件即可，首次运行时让对方确认自己的长期目录。
