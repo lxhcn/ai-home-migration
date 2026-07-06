@@ -19,6 +19,7 @@ The format is inspired by Keep a Changelog and uses semantic-style version label
 - Expanded Claude coverage beyond `~/.claude/skills` to include user settings, project settings, commands, agents, rules, MCP config, and CLAUDE memory files
 - Moved the canonical local inventory concept to the AI home root as `ai-home-inventory.md`; the old `installed-skills-cheatsheet.md` path is now only a compatibility pointer
 - Standardized the local inventory format as a Chinese-primary bilingual quick reference with Chinese and English purpose fields
+- Redesigned the English and Simplified Chinese README files with badges, icon-led sections, navigation links, comparison tables, and clearer installation flow
 
 ## [1.0.0] - 2026-07-06
 
