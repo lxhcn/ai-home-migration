@@ -12,7 +12,7 @@
 ![Windows](https://img.shields.io/badge/Windows-junction%20aware-0078D4)
 ![Inventory](https://img.shields.io/badge/inventory-Chinese--primary%20bilingual-F59E0B)
 
-[English](README.en.md) · [安装](#-安装) · [工作方式](#-工作方式) · [本地清单](#-本地清单) · [仓库结构](#-仓库结构)
+[English](README.en.md) · [安装](#-安装) · [安装后必须做](#-安装后必须做) · [工作方式](#-工作方式) · [本地清单](#-本地清单)
 
 </div>
 
@@ -57,6 +57,34 @@ ai-home-migration/
 | 通用 OpenAI 兼容 agent | `agents/generic-openai.md` 里的 prompt wrapper |
 
 首次使用时，skill 会让你确认 `skills`、`agent-skills`、`mcp`、`user_plugin` 和 `agent-config` 的长期路径。
+
+## ✅ 安装后必须做
+
+安装这个仓库只代表你的 agent 已经能读取 `ai-home-migration` 的规则。它不会在安装瞬间自动迁移目录、修改配置或创建 junction。
+
+安装完成后，请在 Codex、Claude 或其他兼容 agent 中显式运行一次首次整理：
+
+```text
+请用 ai-home-migration 检查并整理我的 Codex、Claude、MCP、skills、plugins 路径，把真实内容放到统一 AI home，并为需要兼容的旧入口建立 junction。
+```
+
+首次整理会做这些事：
+
+| 步骤 | 作用 |
+| --- | --- |
+| 1. 盘点入口 | 检查 `.codex`、`.claude`、`.agents`、MCP、plugins 和工具仓库路径 |
+| 2. 确认长期目录 | 让你确认 `skills`、`agent-skills`、`mcp`、`user_plugin`、`agent-config` 的最终位置 |
+| 3. 迁移或接引 | 把真实内容放到长期目录，或为旧入口创建 junction / symlink |
+| 4. 验证路径 | 确认 Codex、Claude 或其他工具仍能从自己熟悉的入口找到内容 |
+| 5. 写入清单 | 更新 `<confirmed-ai-home-root>/ai-home-inventory.md` |
+
+为什么不自动静默处理？因为这一步可能涉及移动目录、备份旧内容、修改工具入口、创建 Windows junction。`ai-home-migration` 会引导并执行这些操作，但应该在你明确触发并确认后进行。
+
+如果你只想接引 Claude，可以这样说：
+
+```text
+请用 ai-home-migration 只检查 Claude 的 skills、commands、agents 和配置入口，告诉我哪些应该接到统一 AI home，哪些应该保留为本机私有状态。
+```
 
 ## 🧭 工作方式
 

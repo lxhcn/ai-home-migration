@@ -12,7 +12,7 @@ Make AI agent installs clean, predictable, portable, and reusable.
 ![Windows](https://img.shields.io/badge/Windows-junction%20aware-0078D4)
 ![Inventory](https://img.shields.io/badge/inventory-Chinese--primary%20bilingual-F59E0B)
 
-[简体中文](README.md) · [Install](#-install) · [How It Works](#-how-it-works) · [Inventory](#-local-inventory) · [Repository Layout](#-repository-layout)
+[简体中文](README.md) · [Install](#-install) · [After Install](#-after-install-required-first-run) · [How It Works](#-how-it-works) · [Inventory](#-local-inventory)
 
 </div>
 
@@ -57,6 +57,34 @@ Use the entry point that matches your runtime:
 | Generic OpenAI-compatible agents | prompt wrapper in `agents/generic-openai.md` |
 
 On first use, the skill asks you to confirm long-term paths for `skills`, `agent-skills`, `mcp`, `user_plugin`, and `agent-config`.
+
+## ✅ After Install: Required First Run
+
+Installing this repository only makes the `ai-home-migration` rules available to your agent. It does not silently migrate folders, edit configuration, or create junctions at install time.
+
+After installation, explicitly run the first organization pass in Codex, Claude, or another compatible agent:
+
+```text
+Use ai-home-migration to inspect and organize my Codex, Claude, MCP, skills, and plugins paths. Put real content under one AI home and create junctions for legacy entry paths that must keep working.
+```
+
+The first run does five things:
+
+| Step | Purpose |
+| --- | --- |
+| 1. Inventory entry paths | Check `.codex`, `.claude`, `.agents`, MCP, plugins, and tool repo locations |
+| 2. Confirm long-term folders | Ask you to confirm final paths for `skills`, `agent-skills`, `mcp`, `user_plugin`, and `agent-config` |
+| 3. Migrate or bridge | Move real content into long-term folders, or create junctions / symlinks for legacy entries |
+| 4. Validate resolution | Confirm Codex, Claude, or other tools can still find content through their expected entry paths |
+| 5. Refresh inventory | Update `<confirmed-ai-home-root>/ai-home-inventory.md` |
+
+Why not do this automatically and silently? Because this step may move directories, preserve backups, repoint tool entries, or create Windows junctions. `ai-home-migration` can guide and perform that work, but it should happen only after you explicitly trigger and confirm it.
+
+If you only want to bridge Claude, say:
+
+```text
+Use ai-home-migration to inspect only Claude skills, commands, agents, and config entry paths. Tell me what should be bridged into the unified AI home and what should remain private local state.
+```
 
 ## 🧭 How It Works
 
