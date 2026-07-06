@@ -10,6 +10,7 @@
 
 - 首次运行时确认 `skills`、`agent-skills`、`mcp`、`user_plugin`、`agent-config` 的长期路径
 - 提供 Codex/OpenAI、Claude、通用 OpenAI 兼容代理三类适配入口
+- 本机速查表输出总条数和分类数量，覆盖 skills、agent-skills、MCP、插件、用户插件仓库、agent 配置、备份和旧入口链接
 - 按 Windows、macOS、Linux 自动给出默认建议目录
 - 为锁文件仓库、插件目录、旧入口路径提供更稳妥的迁移方式
 - 专门考虑 Windows 下 junction、`.git` 占用和原生插件文件锁问题
@@ -73,7 +74,8 @@ ai-home-migration/
 迁移后：
 
 - 有一套已经确认过的长期目录结构
-- 四类内容按分类规则统一放置
+- 五类内容按分类规则统一放置
+- 本机 inventory 速查表覆盖所有管理分类，而不只是 skill
 - 每条路径都能按风险选最稳妥的迁移方式
 - 必要时保留旧入口路径
 - 以后新装内容自动沿用同一套规则

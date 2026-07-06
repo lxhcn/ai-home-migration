@@ -73,3 +73,4 @@ If the user later changes any confirmed category path:
 - automatically perform the migration needed to move content into the new location
 - recreate or update any required junctions
 - refresh the local placement record
+- refresh the local inventory cheat sheet with total and per-category counts

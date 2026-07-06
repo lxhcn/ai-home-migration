@@ -19,7 +19,7 @@ This folder separates shareable policy from local runtime state.
   Machine-specific confirmed paths. Read it only if it already exists in the installed copy for the current machine.
 
 - `installed-skills-cheatsheet.md`
-  Local quick-reference file for installed skills. Read or update it only after skill installs.
+  Local AI home inventory cheat sheet. The historical filename is retained, but the content should summarize every confirmed category, not only skills.
 
 ## Usage Rule
 
@@ -30,7 +30,19 @@ When `ai-home-migration` runs:
 3. ask the user to confirm or change the category paths
 4. if the user still does not specify custom paths, proceed with the suggested defaults
 5. create or update `placement-rules-local.md` in the installed copy
-6. create or update `installed-skills-cheatsheet.md` only when skill installs require it
+6. create or update `installed-skills-cheatsheet.md` after skill installs, plugin installs, MCP changes, category migrations, renames, cleanup, or local inventory corrections
+
+## Local Inventory Cheat Sheet Rule
+
+`installed-skills-cheatsheet.md` must include:
+
+- total managed entry count
+- per-category counts for `skills`, `agent-skills`, `mcp`, `user_plugin`, and `agent-config`
+- plugin cache roots or plugin bundles when they are user-visible under the confirmed home
+- backup directories and legacy entry junctions created during migration
+- concise Chinese usage or purpose hints for each listed entry
+
+Do not count system folders without `SKILL.md` as skills. For example, a `.system` directory can be present under `skills` but should be reported as excluded system support content, not as a callable skill.
 
 ## Claude Coverage Rule
 

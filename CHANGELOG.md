@@ -17,6 +17,7 @@ The format is inspired by Keep a Changelog and uses semantic-style version label
 
 - Expanded the skill from Codex-only positioning to a multi-agent migration policy for Codex, Claude, OpenAI-compatible agents, MCP bundles, skills, plugins, and tool repos
 - Expanded Claude coverage beyond `~/.claude/skills` to include user settings, project settings, commands, agents, rules, MCP config, and CLAUDE memory files
+- Clarified that the local cheat sheet is a full AI home inventory with total and per-category counts, not just a skill list
 
 ## [1.0.0] - 2026-07-06
 

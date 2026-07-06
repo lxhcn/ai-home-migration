@@ -10,6 +10,7 @@ Make AI agent installs clean, predictable, and reusable.
 
 - First-run path confirmation for `skills`, `agent-skills`, `mcp`, `user_plugin`, and `agent-config`
 - Adapter files for Codex/OpenAI, Claude, and generic OpenAI-compatible agents
+- Local inventory cheat sheet with total and per-category counts across skills, agent-skills, MCP, plugins, user plugin repos, agent config, backups, and legacy entry links
 - OS-aware default paths for Windows, macOS, and Linux
 - Safer migration patterns for locked repos, plugin homes, and legacy launcher paths
 - Windows-aware handling for junctions, `.git` locks, and native plugin binaries
@@ -77,6 +78,7 @@ After:
 - one confirmed long-term layout
 - category-based install rules
 - thin adapters for Codex, Claude, and generic OpenAI-compatible agents
+- one local inventory cheat sheet covering all managed categories, not only skills
 - safer migration choices per path
 - legacy entry paths preserved when needed
 - future installs follow the same structure automatically

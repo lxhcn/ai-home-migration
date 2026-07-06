@@ -13,7 +13,7 @@ It covers the full lifecycle:
 - migrate existing content into those locations
 - recreate original entry paths as junctions when needed
 - install new content into the correct category path
-- maintain local helper files such as the installed-skills cheat sheet
+- maintain local helper files such as the installed AI home inventory cheat sheet
 
 This skill is intentionally split into:
 
@@ -216,15 +216,29 @@ Required behavior:
 
 ### `references/installed-skills-cheatsheet.md`
 
-This file is a local quick-reference list for installed skills.
+This historical filename is kept for compatibility, but the file should be treated as the local AI home inventory cheat sheet.
 
-Required behavior after a new skill install:
+It must summarize every confirmed category, not only normal skills:
+
+- `skills`
+- `agent-skills`
+- `mcp`
+- `user_plugin`
+- `agent-config`
+- plugin cache roots or plugin bundles when they are user-visible under the confirmed home
+- backup directories and legacy entry junctions created by this migration policy
+
+Required behavior after any install, migration, rename, or cleanup:
 
 1. check whether the file exists
 2. if it does not exist, create it first
-3. add the new skill name
-4. add a short Chinese usage hint
-5. keep it concise and easy to copy from
+3. rescan all confirmed category directories
+4. write a summary with:
+   - total managed entry count
+   - per-category counts
+   - excluded system or empty directories
+5. list each entry with a short Chinese usage or purpose hint
+6. keep local/private runtime files out of shareable repository files
 
 ## Tool-Specific Guidance
 
