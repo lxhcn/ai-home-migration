@@ -1,6 +1,6 @@
 # codex-home-migration
 
-English | [简体中文](README.zh-CN.md)
+English | [Simplified Chinese](README.zh-CN.md)
 
 Make Codex installs clean, predictable, and reusable.
 
@@ -14,6 +14,19 @@ Make Codex installs clean, predictable, and reusable.
 - Windows-aware handling for junctions, `.git` locks, and native plugin binaries
 - Clear split between shareable repository files and machine-specific runtime files
 - Reusable install policy for every future user-managed Codex asset
+
+## Install
+
+Install or copy this repository as a Codex skill named `codex-home-migration`, keeping the repository layout intact:
+
+```text
+codex-home-migration/
+  SKILL.md
+  agents/openai.yaml
+  references/
+```
+
+On first use, the skill should ask you to confirm the long-term paths for `skills`, `agent-skills`, `mcp`, and `user_plugin`. It should then create local runtime files in your installed copy, not in the shared repository baseline.
 
 ## Why This Project Matters
 
@@ -199,9 +212,12 @@ codex-home-migration/
   README.md
   README.zh-CN.md
   .gitignore
+  .gitattributes
   CHANGELOG.md
+  CONTRIBUTING.md
   GITHUB_ABOUT.md
   LICENSE
+  SECURITY.md
   agents/
     openai.yaml
   references/
@@ -233,11 +249,17 @@ codex-home-migration/
 - `CHANGELOG.md`
   Release history for the public repository.
 
+- `CONTRIBUTING.md`
+  Contribution guidance for keeping the skill focused and safe.
+
 - `GITHUB_ABOUT.md`
   Suggested GitHub repository description, tagline, and topics.
 
 - `LICENSE`
   Repository license.
+
+- `SECURITY.md`
+  Safety expectations and issue reporting guidance for migration-related risks.
 
 ## Discoverability Notes
 

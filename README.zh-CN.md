@@ -15,6 +15,19 @@
 - 明确区分“可分享的仓库文件”和“本机私有运行文件”
 - 后续所有自装内容都能继续沿用同一套目录规则
 
+## 安装方式
+
+把这个仓库安装或复制为名为 `codex-home-migration` 的 Codex skill，并保持仓库结构不变：
+
+```text
+codex-home-migration/
+  SKILL.md
+  agents/openai.yaml
+  references/
+```
+
+首次使用时，skill 应该先让你确认 `skills`、`agent-skills`、`mcp`、`user_plugin` 四类内容的长期路径。确认后的本机运行文件应写入你自己的安装副本，而不是写进公开仓库默认文件。
+
 ## 为什么这个项目值得关注
 
 很多 Codex 环境最后都会变成类似的问题：
@@ -199,9 +212,12 @@ codex-home-migration/
   README.md
   README.zh-CN.md
   .gitignore
+  .gitattributes
   CHANGELOG.md
+  CONTRIBUTING.md
   GITHUB_ABOUT.md
   LICENSE
+  SECURITY.md
   agents/
     openai.yaml
   references/
