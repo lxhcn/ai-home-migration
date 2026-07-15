@@ -68,6 +68,25 @@ On first use, the skill asks you to confirm long-term paths for `skills`, `mcp`,
 | `user_plugin` | Third-party plugin repos, self-contained plugin suites, standalone tool homes, and real repos migrated after marketplace installs |
 | `agent-config` | User-controlled agent config, adapter prompts, routing notes, launcher metadata, and local policy snippets |
 
+### 🧹 Keep the Root Compact
+
+After migration and cleanup, the AI home root should be easy to scan. The normal steady state keeps only:
+
+```text
+<ai-home-root>/
+  skills/
+  plugins/
+  user_plugin/
+  mcp/
+  ai-home-inventory.md
+```
+
+Notes:
+
+- Create `agent-config` only when real user-controlled config, adapter prompts, routing notes, or launcher metadata exist.
+- Do not keep `agent-skills` as a permanent root folder by default. When legacy compatibility is needed, point each agent's global entry directly to the unified `skills` directory with a bridge.
+- Move backups, migration retention folders, old-path protection folders, and temporary staging content to a sibling `<ai-home-root>-archive/<cleanup-id>` instead of leaving them in the AI home root.
+
 ## ✅ After Install: Required First Run
 
 Installing this repository only makes the `ai-home-migration` rules available to your agent. It does not silently migrate folders, edit configuration, or create entry bridges at install time.

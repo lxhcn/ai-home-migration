@@ -60,6 +60,24 @@ These are suggested defaults only. The installed copy should store the final con
 - `user_plugin`: third-party plugin repositories, self-contained plugin suites, standalone tool homes, marketplace-installed repos after migration, and plugin source trees.
 - `agent-config`: user-controlled config files, adapter prompts, routing notes, launcher metadata, and local policy snippets.
 
+## Compact Root Default
+
+The confirmed AI home root should stay compact after migration and cleanup.
+
+Default steady-state root contents:
+
+- `skills`
+- `plugins`, when a user-visible host plugin cache or bundle root belongs under the confirmed AI home
+- `user_plugin`
+- `mcp`
+- `ai-home-inventory.md`
+
+Create `agent-config` only when the machine actually has user-controlled adapter prompts, launcher metadata, routing notes, or local policy snippets to store.
+
+Keep `agent-skills` as a compatibility bridge when an old entry path needs it. Do not keep it as a normal root folder unless the user confirms a real non-shared adapter directory is required.
+
+Move backup, retention, and cleanup artifacts to a sibling archive root such as `<confirmed-ai-home-root>-archive`, not inside the AI home root.
+
 ## Skill-Linked Plugin Default
 
 Treat a plugin as skill-linked only when it depends on one or more callable skill entries under the confirmed `skills` path.

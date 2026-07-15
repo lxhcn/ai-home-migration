@@ -60,6 +60,33 @@ When `ai-home-migration` runs:
 - `user_plugin`: third-party plugin repositories, self-contained plugin suites, standalone tool homes, marketplace-installed repos after migration, and plugin source trees.
 - `agent-config`: user-controlled config files, adapter prompts, routing notes, launcher metadata, and local policy snippets.
 
+## Compact Root Rule
+
+Keep the confirmed AI home root easy to scan. In the normal steady state, it should contain only:
+
+- `skills`
+- `plugins`, when a user-visible host plugin cache or bundle root belongs under the confirmed AI home
+- `user_plugin`
+- `mcp`
+- `ai-home-inventory.md`
+
+Create `agent-config` only when real user-controlled config, adapter prompt, routing, or launcher metadata files exist.
+
+Do not keep backup folders, old migration retention folders, temporary marketplace staging folders, or legacy compatibility directories in the AI home root after validation. Move those items to a sibling archive such as `<confirmed-ai-home-root>-archive/<cleanup-id>`.
+
+Do not keep `agent-skills` as a visible root folder in the compact steady state unless it is a real, confirmed, non-shared adapter directory. Prefer direct global entry bridges from each agent's expected path to the shared `skills` directory.
+
+For example, after cleanup a Windows root may intentionally contain only:
+
+```text
+D:\2_file\codex-home\
+  skills\
+  plugins\
+  user_plugin\
+  mcp\
+  ai-home-inventory.md
+```
+
 ## Skill-Linked Plugin Inventory Rule
 
 Treat a plugin as skill-linked only when it depends on one or more callable skill entries under the confirmed `skills` path.

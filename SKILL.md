@@ -71,6 +71,18 @@ Use them like this:
 - `user_plugin`: third-party plugin repos, self-contained plugin suites, standalone tool homes, marketplace-installed repos after migration, and plugin source trees
 - `agent-config`: user-controlled agent configuration files, adapter prompts, routing notes, launcher metadata, and local policy snippets that must stay separate from bundled vendor caches
 
+Keep the confirmed AI home root compact. In a normal steady state, the root should contain only durable content categories and the inventory:
+
+- `skills`
+- `plugins`, when the host exposes a user-visible plugin cache or plugin bundle root under the confirmed AI home
+- `user_plugin`
+- `mcp`
+- `ai-home-inventory.md`
+
+Create `agent-config` only when there are real user-controlled config or adapter files to store. Keep `agent-skills` as an entry bridge when required, not as a root folder in the compact steady state unless the user explicitly needs a separate non-shared adapter directory.
+
+Move backups, old migration leftovers, temporary retention folders, and cleanup artifacts to a sibling archive root such as `<confirmed-ai-home-root>-archive/<cleanup-id>`. Do not leave those artifacts in the AI home root after validation.
+
 Treat a plugin as a skill-linked plugin only when it needs one or more callable skill entries published under the confirmed `skills` path.
 
 Do not create a separate skill-linked plugin inventory entry merely because a plugin repo contains an internal `skills/` folder, `SKILL.md`, `.codex-plugin/`, `.claude-plugin/`, `mcp/`, or `hooks/`. If the whole tool runs as a self-contained plugin suite, keep it under `user_plugin` only.

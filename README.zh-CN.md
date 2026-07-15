@@ -68,6 +68,25 @@ ai-home-migration/
 | `user_plugin` | 第三方插件仓库、整套自洽的插件、独立工具仓库、marketplace 安装后迁入的真实仓库 |
 | `agent-config` | 用户可控的 agent 配置、adapter prompt、路由说明、启动元数据、本地策略片段 |
 
+### 🧹 根目录保持轻量
+
+迁移和清理完成后的 AI home 根目录应该容易扫一眼看懂。正常稳定状态只保留：
+
+```text
+<ai-home-root>/
+  skills/
+  plugins/
+  user_plugin/
+  mcp/
+  ai-home-inventory.md
+```
+
+说明：
+
+- `agent-config` 只有在真的存在用户可控配置、adapter prompt、路由说明或启动元数据时才创建。
+- `agent-skills` 默认不再作为根目录常驻；需要兼容旧入口时，让对应 agent 的全局入口直接 bridge 到统一 `skills`。
+- 备份、迁移留存、旧路径保护目录和临时 staging 内容，应该移动到相邻的 `<ai-home-root>-archive/<cleanup-id>`，不要长期堆在 AI home 根目录。
+
 ## ✅ 安装后必须做
 
 安装这个仓库只代表你的 agent 已经能读取 `ai-home-migration` 的规则。它不会在安装瞬间自动迁移目录、修改配置或创建接引 bridge。

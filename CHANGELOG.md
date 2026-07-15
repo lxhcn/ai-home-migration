@@ -27,6 +27,7 @@ The format is inspired by Keep a Changelog and uses semantic-style version label
 - Narrowed the "plugin with skills" inventory rule so self-contained plugin suites stay under `user_plugin`; only plugins that require callable entries under `skills` get a dedicated skill-linked plugin subsection
 - Documented what each confirmed category path stores in the Chinese and English README files
 - Simplified the standard skill discovery model: all standard callable `SKILL.md` folders now publish to `skills`, while `agent-skills` is treated as a compatibility bridge by default and reserved as a real directory only for non-shared agent-specific adapters
+- Added a compact-root cleanup rule: keep the AI home root limited to durable category folders plus `ai-home-inventory.md`, move backup/retention artifacts to a sibling archive, and use direct global entry bridges to the unified `skills` directory
 
 ## [1.0.0] - 2026-07-06
 
