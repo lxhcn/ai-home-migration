@@ -16,7 +16,7 @@ On first use:
 3. tell the user that these defaults can be changed
 4. ask the user to confirm the long-term paths for:
    - `skills`
-   - `agent-skills`
+   - `agent-skills` compatibility bridge, if needed
    - `mcp`
    - `user_plugin`
    - `agent-config`
@@ -29,7 +29,7 @@ Do not silently assume a final storage layout before this step.
 ### Windows default
 
 - `C:\Users\<user>\ai_tools\skills`
-- `C:\Users\<user>\ai_tools\agent-skills`
+- `C:\Users\<user>\ai_tools\agent-skills` as a compatibility bridge to `skills`
 - `C:\Users\<user>\ai_tools\mcp`
 - `C:\Users\<user>\ai_tools\user_plugin`
 - `C:\Users\<user>\ai_tools\agent-config`
@@ -37,7 +37,7 @@ Do not silently assume a final storage layout before this step.
 ### macOS default
 
 - `~/ai_tools/skills`
-- `~/ai_tools/agent-skills`
+- `~/ai_tools/agent-skills` as a compatibility symlink to `skills`
 - `~/ai_tools/mcp`
 - `~/ai_tools/user_plugin`
 - `~/ai_tools/agent-config`
@@ -45,7 +45,7 @@ Do not silently assume a final storage layout before this step.
 ### Linux default
 
 - `~/ai_tools/skills`
-- `~/ai_tools/agent-skills`
+- `~/ai_tools/agent-skills` as a compatibility symlink to `skills`
 - `~/ai_tools/mcp`
 - `~/ai_tools/user_plugin`
 - `~/ai_tools/agent-config`
@@ -54,20 +54,20 @@ These are suggested defaults only. The installed copy should store the final con
 
 ## Category Content Defaults
 
-- `skills`: callable user skills that should be discovered directly by the agent, normally one folder per skill with `SKILL.md`.
-- `agent-skills`: generated skill links, compatibility entry points, Claude-style command or agent folders, and agent-facing launchers.
+- `skills`: the single shared public discovery directory for all standard callable `SKILL.md` folders, including normal skills and plugin-provided skill entries.
+- `agent-skills`: compatibility bridge to `skills` by default; use as a real separate directory only for truly agent-specific adapters that cannot be shared through `skills`.
 - `mcp`: MCP servers, bundles, manifests, adapters, and support files controlled by the user.
 - `user_plugin`: third-party plugin repositories, self-contained plugin suites, standalone tool homes, marketplace-installed repos after migration, and plugin source trees.
 - `agent-config`: user-controlled config files, adapter prompts, routing notes, launcher metadata, and local policy snippets.
 
 ## Skill-Linked Plugin Default
 
-Treat a plugin as skill-linked only when it depends on one or more callable skill entries under the confirmed `skills` or `agent-skills` path.
+Treat a plugin as skill-linked only when it depends on one or more callable skill entries under the confirmed `skills` path.
 
 Default placement rule:
 
 - store the real repo under `user_plugin/<tool-name>`
-- store only required callable skill entries or links under `skills` or `agent-skills`
+- store only required callable skill entries or links under `skills`
 - list it in the inventory as a skill-linked plugin only when those external skill entries exist
 - list self-contained plugin suites only under `user_plugin`
 
@@ -84,7 +84,7 @@ Use this concise structure:
 `I can standardize your user-installed AI agent content into long-term folders. Based on your current operating system, my suggested defaults are:`
 
 `- skills: <default-skills-path>`
-`- agent-skills: <default-agent-skills-path>`
+`- agent-skills: <default-agent-skills-compat-bridge-path>`
 `- mcp: <default-mcp-path>`
 `- user_plugin: <default-user-plugin-path>`
 `- agent-config: <default-agent-config-path>`

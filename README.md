@@ -27,7 +27,7 @@
 | 分类 | 管理内容 |
 | --- | --- |
 | 🧠 Skills | Codex skills、Claude 风格 skills、通用 OpenAI 兼容 skill 包 |
-| 🔗 Agent 入口 | `agent-skills` 链接、工具生成的 agent 入口 |
+| 🔗 Agent 入口 | 统一指向 `skills` 的兼容入口；`agent-skills` 默认只做旧路径 bridge |
 | 🧩 MCP | 用户管理的 MCP bundle、server 和支持目录 |
 | 🛠️ 插件 | 第三方插件仓库、独立工具仓库、marketplace 安装后的真实仓库 |
 | ⚙️ 配置 | 用户可控的 agent prompt、适配元数据和启动配置 |
@@ -56,14 +56,14 @@ ai-home-migration/
 | Claude 风格环境 | `agents/claude.md`，它会指回核心 `SKILL.md` |
 | 通用 OpenAI 兼容 agent | `agents/generic-openai.md` 里的 prompt wrapper |
 
-首次使用时，skill 会让你确认 `skills`、`agent-skills`、`mcp`、`user_plugin` 和 `agent-config` 的长期路径。
+首次使用时，skill 会让你确认 `skills`、`mcp`、`user_plugin`、`agent-config`，以及是否需要保留 `agent-skills` 兼容 bridge。
 
 ## 🗂️ 统一目录分别放什么
 
 | 目录 | 存放内容 |
 | --- | --- |
-| `skills` | agent 需要直接发现和调用的用户 skill，通常每个目录有 `SKILL.md` |
-| `agent-skills` | 工具生成的 skill 入口、兼容链接、Claude-style commands / agents、面向 agent 的启动入口 |
+| `skills` | 唯一公共 Skills 目录；所有标准 `SKILL.md`，包括普通 skills 和插件提供的 skill 入口，都发布到这里 |
+| `agent-skills` | 默认作为指向 `skills` 的兼容 bridge；只有真正不能通用的 Agent 专用适配器才单独放这里 |
 | `mcp` | 用户管理的 MCP server、bundle、manifest、adapter 和支持文件 |
 | `user_plugin` | 第三方插件仓库、整套自洽的插件、独立工具仓库、marketplace 安装后迁入的真实仓库 |
 | `agent-config` | 用户可控的 agent 配置、adapter prompt、路由说明、启动元数据、本地策略片段 |
@@ -83,7 +83,7 @@ ai-home-migration/
 | 步骤 | 作用 |
 | --- | --- |
 | 1. 盘点入口 | 检查 `.codex`、`.claude`、`.agents`、MCP、plugins 和工具仓库路径 |
-| 2. 确认长期目录 | 让你确认 `skills`、`agent-skills`、`mcp`、`user_plugin`、`agent-config` 的最终位置 |
+| 2. 确认长期目录 | 让你确认 `skills`、`mcp`、`user_plugin`、`agent-config`，以及 `agent-skills` 是否只保留兼容 bridge |
 | 3. 迁移或接引 | 把真实内容放到长期目录，或为旧入口创建对应系统的 bridge |
 | 4. 验证路径 | 确认 Codex、Claude 或其他工具仍能从自己熟悉的入口找到内容 |
 | 5. 写入清单 | 更新 `<confirmed-ai-home-root>/ai-home-inventory.md` |
@@ -173,7 +173,7 @@ D:\2_file\codex-home\ai-home-inventory.md
 - 适用时提供调用示例
 - 被排除的支持目录，例如 `.system`
 
-“带 skill 的插件”只在一种情况下单独列出：插件仓库本身放在 `user_plugin`，同时还需要在 `skills` 或 `agent-skills` 里暴露可调用入口。像 `last30days` 这种整套功能都在 plugin 内部自洽的插件，只列在 `user_plugin`，不额外放进“带 skill 的插件”分组。
+“带 skill 的插件”只在一种情况下单独列出：插件仓库本身放在 `user_plugin`，同时还需要在 `skills` 里暴露可调用入口。像 `last30days` 这种整套功能都在 plugin 内部自洽的插件，只列在 `user_plugin`，不额外放进“带 skill 的插件”分组。
 
 历史路径 `references/installed-skills-cheatsheet.md` 只作为兼容指针保留。
 
@@ -202,7 +202,7 @@ Windows 默认建议：
 
 ```text
 C:\Users\<user>\ai_tools\skills
-C:\Users\<user>\ai_tools\agent-skills
+C:\Users\<user>\ai_tools\agent-skills  # compatibility bridge to skills
 C:\Users\<user>\ai_tools\mcp
 C:\Users\<user>\ai_tools\user_plugin
 C:\Users\<user>\ai_tools\agent-config
@@ -212,7 +212,7 @@ macOS / Linux 默认建议：
 
 ```text
 ~/ai_tools/skills
-~/ai_tools/agent-skills
+~/ai_tools/agent-skills  # compatibility symlink to skills
 ~/ai_tools/mcp
 ~/ai_tools/user_plugin
 ~/ai_tools/agent-config

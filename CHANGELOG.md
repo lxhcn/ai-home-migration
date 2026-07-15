@@ -24,8 +24,9 @@ The format is inspired by Keep a Changelog and uses semantic-style version label
 - Added a prominent post-install first-run section explaining that migration and platform bridge creation require explicit user-triggered execution
 - Added cross-platform bridge rules that map Windows directory junctions and macOS/Linux symbolic links into one shared entry-path preservation model
 - Clarified that marketplace-installed plugin repos must be moved into the confirmed `user_plugin` path instead of remaining in user-profile, cache, or temporary marketplace locations
-- Narrowed the "plugin with skills" inventory rule so self-contained plugin suites stay under `user_plugin`; only plugins that require callable entries under `skills` or `agent-skills` get a dedicated skill-linked plugin subsection
+- Narrowed the "plugin with skills" inventory rule so self-contained plugin suites stay under `user_plugin`; only plugins that require callable entries under `skills` get a dedicated skill-linked plugin subsection
 - Documented what each confirmed category path stores in the Chinese and English README files
+- Simplified the standard skill discovery model: all standard callable `SKILL.md` folders now publish to `skills`, while `agent-skills` is treated as a compatibility bridge by default and reserved as a real directory only for non-shared agent-specific adapters
 
 ## [1.0.0] - 2026-07-06
 

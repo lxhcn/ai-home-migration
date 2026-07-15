@@ -27,7 +27,7 @@ It helps you standardize:
 | Area | What Gets Managed |
 | --- | --- |
 | 🧠 Skills | Codex skills, Claude-style skills, and generic OpenAI-compatible skill packages |
-| 🔗 Agent entries | `agent-skills` links and tool-generated agent entry points |
+| 🔗 Agent entries | Compatibility entries that point to `skills`; `agent-skills` is normally only a legacy bridge |
 | 🧩 MCP | User-managed MCP bundles, servers, and support directories |
 | 🛠️ Plugins | Third-party plugin repos, standalone tool homes, and real repos migrated after marketplace installs |
 | ⚙️ Config | User-controlled agent prompts, adapter metadata, and launcher config |
@@ -56,14 +56,14 @@ Use the entry point that matches your runtime:
 | Claude-style surfaces | `agents/claude.md`, which points back to `SKILL.md` |
 | Generic OpenAI-compatible agents | prompt wrapper in `agents/generic-openai.md` |
 
-On first use, the skill asks you to confirm long-term paths for `skills`, `agent-skills`, `mcp`, `user_plugin`, and `agent-config`.
+On first use, the skill asks you to confirm long-term paths for `skills`, `mcp`, `user_plugin`, `agent-config`, and whether `agent-skills` should remain only as a compatibility bridge.
 
 ## 🗂️ What Each Directory Stores
 
 | Directory | Contents |
 | --- | --- |
-| `skills` | User skills that the agent should discover and invoke directly, normally one folder per skill with `SKILL.md` |
-| `agent-skills` | Generated skill entries, compatibility links, Claude-style commands / agents, and agent-facing launchers |
+| `skills` | The single shared public Skills directory; all standard `SKILL.md` folders, including normal skills and plugin-provided skill entries, are published here |
+| `agent-skills` | Compatibility bridge to `skills` by default; use it as a real separate directory only for truly agent-specific adapters |
 | `mcp` | User-managed MCP servers, bundles, manifests, adapters, and support files |
 | `user_plugin` | Third-party plugin repos, self-contained plugin suites, standalone tool homes, and real repos migrated after marketplace installs |
 | `agent-config` | User-controlled agent config, adapter prompts, routing notes, launcher metadata, and local policy snippets |
@@ -83,7 +83,7 @@ The first run does five things:
 | Step | Purpose |
 | --- | --- |
 | 1. Inventory entry paths | Check `.codex`, `.claude`, `.agents`, MCP, plugins, and tool repo locations |
-| 2. Confirm long-term folders | Ask you to confirm final paths for `skills`, `agent-skills`, `mcp`, `user_plugin`, and `agent-config` |
+| 2. Confirm long-term folders | Ask you to confirm `skills`, `mcp`, `user_plugin`, `agent-config`, and whether `agent-skills` should stay only as a compatibility bridge |
 | 3. Migrate or bridge | Move real content into long-term folders, or create the platform-appropriate bridge for legacy entries |
 | 4. Validate resolution | Confirm Codex, Claude, or other tools can still find content through their expected entry paths |
 | 5. Refresh inventory | Update `<confirmed-ai-home-root>/ai-home-inventory.md` |
@@ -173,7 +173,7 @@ It is a Chinese-primary bilingual quick reference. It includes:
 - invocation examples when applicable
 - excluded support folders such as `.system`
 
-A "plugin with skills" is listed separately only when the plugin repo lives under `user_plugin` and also needs callable entries under `skills` or `agent-skills`. A self-contained plugin suite such as `last30days` should be listed only under `user_plugin`, not under a separate skill-linked plugin group.
+A "plugin with skills" is listed separately only when the plugin repo lives under `user_plugin` and also needs callable entries under `skills`. A self-contained plugin suite such as `last30days` should be listed only under `user_plugin`, not under a separate skill-linked plugin group.
 
 The historical `references/installed-skills-cheatsheet.md` path is kept only as a compatibility pointer.
 
@@ -202,7 +202,7 @@ Windows defaults:
 
 ```text
 C:\Users\<user>\ai_tools\skills
-C:\Users\<user>\ai_tools\agent-skills
+C:\Users\<user>\ai_tools\agent-skills  # compatibility bridge to skills
 C:\Users\<user>\ai_tools\mcp
 C:\Users\<user>\ai_tools\user_plugin
 C:\Users\<user>\ai_tools\agent-config
@@ -212,7 +212,7 @@ macOS / Linux defaults:
 
 ```text
 ~/ai_tools/skills
-~/ai_tools/agent-skills
+~/ai_tools/agent-skills  # compatibility symlink to skills
 ~/ai_tools/mcp
 ~/ai_tools/user_plugin
 ~/ai_tools/agent-config

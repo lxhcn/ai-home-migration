@@ -45,8 +45,8 @@ When `ai-home-migration` runs:
 `<confirmed-ai-home-root>/ai-home-inventory.md` must be a Chinese-primary bilingual quick reference and include:
 
 - total managed entry count
-- per-category counts for `skills`, `agent-skills`, `mcp`, `user_plugin`, and `agent-config`
-- a dedicated subsection for skill-linked plugins only when a plugin repo also needs callable entries under `skills` or `agent-skills`
+- per-category counts for `skills`, `mcp`, `user_plugin`, `agent-config`, and any `agent-skills` compatibility bridge
+- a dedicated subsection for skill-linked plugins only when a plugin repo also needs callable entries under `skills`
 - plugin cache roots or plugin bundles when they are user-visible under the confirmed home
 - backup directories and legacy entry bridges created during migration
 - concise Chinese purpose hints first, with English purpose notes as secondary context
@@ -54,22 +54,22 @@ When `ai-home-migration` runs:
 
 ## Category Content Rule
 
-- `skills`: callable user skills that should be discovered directly by the agent, normally one folder per skill with `SKILL.md`.
-- `agent-skills`: generated skill links, compatibility entry points, Claude-style command or agent folders, and agent-facing launchers.
+- `skills`: the single shared public discovery directory for all standard callable `SKILL.md` folders, including normal skills and plugin-provided skill entries.
+- `agent-skills`: compatibility bridge to `skills` by default; use as a real separate directory only for truly agent-specific adapters that cannot be shared through `skills`.
 - `mcp`: MCP servers, bundles, manifests, adapters, and support files controlled by the user.
 - `user_plugin`: third-party plugin repositories, self-contained plugin suites, standalone tool homes, marketplace-installed repos after migration, and plugin source trees.
 - `agent-config`: user-controlled config files, adapter prompts, routing notes, launcher metadata, and local policy snippets.
 
 ## Skill-Linked Plugin Inventory Rule
 
-Treat a plugin as skill-linked only when it depends on one or more callable skill entries under the confirmed `skills` or `agent-skills` path.
+Treat a plugin as skill-linked only when it depends on one or more callable skill entries under the confirmed `skills` path.
 
 Do not create a separate "plugin with skills" inventory section merely because a plugin repo contains internal `skills/`, `SKILL.md`, `.codex-plugin/`, `.claude-plugin/`, `mcp/`, or `hooks/` paths. If the whole tool is self-contained inside the plugin, list it only under `user_plugin`.
 
 If a plugin does need external callable skill entries:
 
 1. store the real plugin repo under `user_plugin/<tool-name>`
-2. store only the required callable skill entry folders or links under `skills` or `agent-skills`
+2. store only the required callable skill entry folders or links under `skills`
 3. keep the root inventory entry under a dedicated skill-linked plugin subsection
 4. show both the plugin repo path and the skill entry path in the inventory
 
@@ -82,7 +82,7 @@ If Codex marketplace installs a repo under a cache or temp path such as `~/.code
 1. treat the temp path as an entry path only
 2. move or copy the real repo into `user_plugin/<tool-name>`
 3. recreate the old marketplace path as a bridge to the unified `user_plugin` location
-4. list it as a normal plugin unless it also needs callable entries under `skills` or `agent-skills`
+4. list it as a normal plugin unless it also needs callable entries under `skills`
 
 Do not count system folders without `SKILL.md` as skills. For example, a `.system` directory can be present under `skills` but should be reported as excluded system support content, not as a callable skill.
 

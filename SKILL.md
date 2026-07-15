@@ -65,13 +65,13 @@ Confirm and manage these user-owned categories:
 
 Use them like this:
 
-- `skills`: callable, user-installed skill folders that the agent should discover directly, each normally containing `SKILL.md`
-- `agent-skills`: agent-facing skill links, generated skill entry points, Claude-style commands or agent entry folders, and compatibility launchers
+- `skills`: the single shared public discovery directory for all standard callable `SKILL.md` folders, including normal skills and plugin-provided skill entries
+- `agent-skills`: compatibility bridge to `skills` by default; use as a real separate directory only for truly agent-specific adapters that cannot be shared through `skills`
 - `mcp`: user-managed MCP servers, bundles, manifests, adapters, and support directories
 - `user_plugin`: third-party plugin repos, self-contained plugin suites, standalone tool homes, marketplace-installed repos after migration, and plugin source trees
 - `agent-config`: user-controlled agent configuration files, adapter prompts, routing notes, launcher metadata, and local policy snippets that must stay separate from bundled vendor caches
 
-Treat a plugin as a skill-linked plugin only when it needs one or more callable skill entries under the confirmed `skills` or `agent-skills` path.
+Treat a plugin as a skill-linked plugin only when it needs one or more callable skill entries published under the confirmed `skills` path.
 
 Do not create a separate skill-linked plugin inventory entry merely because a plugin repo contains an internal `skills/` folder, `SKILL.md`, `.codex-plugin/`, `.claude-plugin/`, `mcp/`, or `hooks/`. If the whole tool runs as a self-contained plugin suite, keep it under `user_plugin` only.
 
@@ -211,11 +211,12 @@ Steps:
 For future user-managed installs:
 
 - install normal skills into the confirmed `skills` path
-- install agent-facing linked skills into the confirmed `agent-skills` path
+- install all standard callable `SKILL.md` folders into the confirmed `skills` path, including plugin-provided skill entries
+- keep `agent-skills` as a compatibility bridge to `skills` unless a tool truly requires a non-shared agent-specific adapter
 - install custom MCP content into the confirmed `mcp` path
 - install third-party plugin repos or standalone tool homes into the confirmed `user_plugin` path
 - install marketplace-provided plugin repos into the confirmed `user_plugin` path even if the host initially downloads them into a vendor-managed cache or temp folder
-- install plugin-owned callable skill entry folders into `skills` or `agent-skills` only when the plugin actually requires those entries for agent discovery
+- install plugin-owned callable skill entry folders into `skills` only when the plugin actually requires those entries for agent discovery
 - install user-controlled adapter prompts or agent config snippets into the confirmed `agent-config` path
 
 For Claude-specific installs:
@@ -234,7 +235,7 @@ If a Codex marketplace install places a third-party repo under a vendor-managed 
 1. copy the real repo into `user_plugin/<tool-name>`
 2. preserve the original marketplace path as a platform-specific bridge back to the unified `user_plugin` location
 3. keep a backup only when needed for rollback or lock safety
-4. record the repo in the root inventory as a normal plugin unless it also needs callable skill entries under `skills` or `agent-skills`
+4. record the repo in the root inventory as a normal plugin unless it also needs callable skill entries under `skills`
 
 ## Local File Rules
 
@@ -258,11 +259,11 @@ Place it at the confirmed AI home root, not under one skill's `references/` fold
 It must summarize every confirmed category, not only normal skills:
 
 - `skills`
-- `agent-skills`
+- `agent-skills` compatibility bridge state, if present
 - `mcp`
 - `user_plugin`
 - `agent-config`
-- skill-linked plugins as a distinct subgroup only when a plugin repo also needs callable entries under `skills` or `agent-skills`
+- skill-linked plugins as a distinct subgroup only when a plugin repo also needs callable entries under `skills`
 - plugin cache roots or plugin bundles when they are user-visible under the confirmed home
 - backup directories and legacy entry bridges created by this migration policy
 
@@ -279,7 +280,7 @@ Required behavior after any install, migration, rename, or cleanup:
    - Chinese headings and purpose hints should come first
    - English headings and purpose notes should follow as secondary context
    - each listed entry should include Chinese purpose, English purpose, path, and a short invocation example when applicable
-   - list skill-linked plugins in their own dedicated section only when they depend on callable entries under `skills` or `agent-skills`
+   - list skill-linked plugins in their own dedicated section only when they depend on callable entries under `skills`
 6. keep local/private runtime files out of shareable repository files
 
 ### `references/installed-skills-cheatsheet.md`
@@ -300,7 +301,7 @@ Common structure:
 
 Preferred handling:
 
-1. keep `understand-*` links if `agent-skills` is already standardized
+1. publish `understand-*` callable skill entries under the shared `skills` path
 2. copy the repo to `user_plugin/understand-anything`
 3. point the plugin entry path to the repo copy
 4. keep the original repo if `.git` locks prevent a clean move
