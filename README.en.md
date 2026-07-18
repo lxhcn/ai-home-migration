@@ -187,6 +187,8 @@ It is a Chinese-primary bilingual quick reference. It includes:
 
 - total managed entry count
 - per-category counts
+- work-type subgroups under each large category
+- `Source` labels for entries that come from the same GitHub project, plugin bundle, or local source
 - Chinese purpose first, English purpose second
 - path for every listed entry
 - invocation examples when applicable

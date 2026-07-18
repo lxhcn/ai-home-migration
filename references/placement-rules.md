@@ -46,11 +46,18 @@ When `ai-home-migration` runs:
 
 - total managed entry count
 - per-category counts for `skills`, `mcp`, `user_plugin`, `agent-config`, and any `agent-skills` compatibility bridge
+- second-level work-type subgroups inside each large category so the file is scannable by purpose, not only by name
+- source or upstream project labels for skills that belong to the same GitHub repository, plugin bundle, marketplace source, or local project
+- a source summary showing how many entries came from each known source
 - a dedicated subsection for skill-linked plugins only when a plugin repo also needs callable entries under `skills`
 - plugin cache roots or plugin bundles when they are user-visible under the confirmed home
 - backup directories and legacy entry bridges created during migration
 - concise Chinese purpose hints first, with English purpose notes as secondary context
 - path and invocation example fields where applicable
+
+Use concise labels such as `源头 / Source: coreyhaines31/marketingskills` or `源头 / Source: OpenAI curated plugin cache`. The label can appear in the table row, entry heading, or a dedicated field; prefer the shape that keeps the inventory readable.
+
+When multiple skills belong to the same upstream project, mark every affected skill. For example, if `a1` and `b1` are both published from the `AB` GitHub project, show `源头 / Source: AB` for both entries and include `AB` in the source summary.
 
 ## Category Content Rule
 

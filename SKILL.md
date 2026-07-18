@@ -291,6 +291,10 @@ Required behavior after any install, migration, rename, or cleanup:
 5. write the inventory as a Chinese-primary bilingual quick reference:
    - Chinese headings and purpose hints should come first
    - English headings and purpose notes should follow as secondary context
+   - keep the top-level categories stable, such as `skills`, `mcp`, `user_plugin`, plugin cache roots, skill-linked plugin repos, bridges, and archives
+   - add a second-level work-type subgroup under each large category, such as marketing/growth, product strategy, code understanding, document processing, browser automation, office files, or migration maintenance
+   - mark each skill with its source project when multiple entries come from the same upstream repo or plugin bundle
+   - include a source summary so related entries from one GitHub repo, plugin bundle, or local source are easy to scan together
    - each listed entry should include Chinese purpose, English purpose, path, and a short invocation example when applicable
    - list skill-linked plugins in their own dedicated section only when they depend on callable entries under `skills`
 6. keep local/private runtime files out of shareable repository files

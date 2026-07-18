@@ -116,7 +116,7 @@ If the user later changes any confirmed category path:
 - automatically perform the migration needed to move content into the new location
 - recreate or update any required entry bridges
 - refresh the local placement record
-- refresh `<confirmed-ai-home-root>/ai-home-inventory.md` as a Chinese-primary bilingual inventory with total and per-category counts
+- refresh `<confirmed-ai-home-root>/ai-home-inventory.md` as a Chinese-primary bilingual inventory with total counts, per-category counts, second-level work-type subgroups, and source/upstream project labels for related skills or plugin entries
 
 ## Bridge Terminology
 
