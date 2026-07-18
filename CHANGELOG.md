@@ -29,6 +29,7 @@ The format is inspired by Keep a Changelog and uses semantic-style version label
 - Simplified the standard skill discovery model: all standard callable `SKILL.md` folders now publish to `skills`, while `agent-skills` is treated as a compatibility bridge by default and reserved as a real directory only for non-shared agent-specific adapters
 - Added a compact-root cleanup rule: keep the AI home root limited to durable category folders plus `ai-home-inventory.md`, move backup/retention artifacts to a sibling archive, and use direct global entry bridges to the unified `skills` directory
 - Required local inventories to keep the existing large categories while adding work-type subgroups and source/upstream project labels for related skills
+- Clarified that unknown skill provenance must be labeled `来源待确认 / Source pending` instead of treating the unified storage directory as a source
 
 ## [1.0.0] - 2026-07-06
 

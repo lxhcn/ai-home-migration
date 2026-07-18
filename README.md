@@ -188,7 +188,7 @@ D:\2_file\codex-home\ai-home-inventory.md
 - 受管条目总数
 - 各分类数量
 - 大类下的工作用途小类
-- 同源 GitHub 项目、插件包或本地源头的 `源头 / Source` 标注
+- 同源 GitHub 项目或插件包的 `源头 / Source` 标注；无法确认来源时标为 `来源待确认 / Source pending`
 - 中文用途优先，英文用途辅助
 - 每个条目的路径
 - 适用时提供调用示例
