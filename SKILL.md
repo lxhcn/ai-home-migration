@@ -95,18 +95,32 @@ On the first install or first use on a machine:
 
 1. detect the current operating system
 2. propose OS-appropriate default locations from `references/placement-rules-default.md`
-3. ask the user to confirm the long-term paths for all managed categories
-4. if the user still does not specify custom paths, proceed with the proposed defaults
-5. write the confirmed result into `references/placement-rules-local.md` in the installed copy
+3. display the default locations in a prominent warning block before any migration or install writes occur
+4. ask the user to either confirm the defaults or provide custom long-term paths for all managed categories
+5. if the user does not explicitly confirm the defaults or provide custom paths, stop before write operations and say that only read-only inventory has been completed
+6. write the confirmed result into `references/placement-rules-local.md` in the installed copy, including whether the paths are `confirmed-default` or `user-custom`
 
 If a confirmed local rules file already exists, reuse it and do not override it with generic defaults unless the user explicitly changes paths.
 
 If the user later changes any confirmed path, automatically perform the needed migration and bridge updates.
 
+### Default Path Notice
+
+When `references/placement-rules-local.md` is absent, incomplete, or records `confirmed-default` paths, every agent using this skill must prominently show the current path status in its user-facing response.
+
+Use a highlighted Markdown block like this before any plan, install, migration, or final summary:
+
+> **默认路径提醒 / Default Path Notice**
+> 当前尚未使用自定义长期路径，或正在使用已确认的默认路径。
+> Current status: default AI home paths are being proposed or used.
+> Change them now if you want another drive or directory.
+
+Do not bury this notice in a long paragraph. Keep it near the top of the response.
+
 ## Quick Start Workflow
 
 1. Confirm whether a local placement file already exists.
-2. If no local placement file exists, propose OS-aware defaults and ask the user to confirm or change them.
+2. If no local placement file exists, propose OS-aware defaults in the highlighted default-path notice and ask the user to confirm or change them.
 3. Inventory the current state before changing anything.
 4. Classify each source path as direct-move, copy-first, backup-plus-bridge, or already-done.
 5. Create or verify destination directories.

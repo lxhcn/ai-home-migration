@@ -33,12 +33,24 @@ When `ai-home-migration` runs:
 
 1. read `placement-rules-local.md` first if it exists
 2. otherwise use `placement-rules-default.md` to propose OS-aware defaults
-3. ask the user to confirm or change the category paths
-4. if the user still does not specify custom paths, proceed with the suggested defaults
-5. create or update `placement-rules-local.md` in the installed copy
-6. create or update `<confirmed-ai-home-root>/ai-home-inventory.md` after skill installs, plugin installs, MCP changes, category migrations, renames, cleanup, or local inventory corrections
-7. if `references/installed-skills-cheatsheet.md` exists, keep it as a pointer to the root inventory instead of a second source of truth
-8. use `cross-platform-bridge-rules.md` when old entry paths must keep working after real content moves into the confirmed AI home
+3. show a prominent default-path notice when defaults are being proposed or used
+4. ask the user to confirm the defaults or change the category paths
+5. if the user does not explicitly confirm defaults or provide custom paths, stop before write operations and report that only read-only inventory was completed
+6. create or update `placement-rules-local.md` in the installed copy and record whether paths are `confirmed-default` or `user-custom`
+7. create or update `<confirmed-ai-home-root>/ai-home-inventory.md` after skill installs, plugin installs, MCP changes, category migrations, renames, cleanup, or local inventory corrections
+8. if `references/installed-skills-cheatsheet.md` exists, keep it as a pointer to the root inventory instead of a second source of truth
+9. use `cross-platform-bridge-rules.md` when old entry paths must keep working after real content moves into the confirmed AI home
+
+## Default Path Notice Rule
+
+If `placement-rules-local.md` is absent, incomplete, or records `confirmed-default`, every user-facing response that plans, performs, or summarizes install/migration work must include this highlighted block near the top:
+
+> **默认路径提醒 / Default Path Notice**
+> 当前尚未使用自定义长期路径，或正在使用已确认的默认路径。
+> Current status: default AI home paths are being proposed or used.
+> Change them now if you want another drive or directory.
+
+Do not continue with file-moving, bridge creation, or config writes until the user explicitly confirms default paths or provides custom paths.
 
 ## Root Inventory Rule
 

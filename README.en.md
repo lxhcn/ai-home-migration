@@ -91,6 +91,11 @@ Notes:
 
 Installing this repository only makes the `ai-home-migration` rules available to your agent. It does not silently migrate folders, edit configuration, or create entry bridges at install time.
 
+> **Default Path Notice / 默认路径提醒**
+> If you have not confirmed long-term paths yet, `ai-home-migration` only proposes defaults. It must not silently migrate folders, create bridges, or edit configuration.
+> The agent may continue with write operations only after you explicitly reply that it should use the defaults or provide custom paths.
+> If you confirm the defaults, later plans, action summaries, and final reports should keep prominently saying that default paths are being used.
+
 After installation, explicitly run the first organization pass in Codex, Claude, or another compatible agent:
 
 ```text

@@ -91,6 +91,11 @@ ai-home-migration/
 
 安装这个仓库只代表你的 agent 已经能读取 `ai-home-migration` 的规则。它不会在安装瞬间自动迁移目录、修改配置或创建接引 bridge。
 
+> **默认路径提醒 / Default Path Notice**
+> 如果你还没有确认长期路径，`ai-home-migration` 只会提出默认建议，不会静默迁移、创建 bridge 或修改配置。
+> 只有当你明确回复“使用默认路径”或提供自定义路径后，agent 才能继续执行写入类操作。
+> 如果你确认使用默认路径，后续计划、执行摘要和完成报告都应继续醒目标注“正在使用默认路径”。
+
 安装完成后，请在 Codex、Claude 或其他兼容 agent 中显式运行一次首次整理：
 
 ```text

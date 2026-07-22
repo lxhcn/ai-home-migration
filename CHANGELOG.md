@@ -30,6 +30,7 @@ The format is inspired by Keep a Changelog and uses semantic-style version label
 - Added a compact-root cleanup rule: keep the AI home root limited to durable category folders plus `ai-home-inventory.md`, move backup/retention artifacts to a sibling archive, and use direct global entry bridges to the unified `skills` directory
 - Required local inventories to keep the existing large categories while adding work-type subgroups and source/upstream project labels for related skills
 - Clarified that unknown skill provenance must be labeled `来源待确认 / Source pending` instead of treating the unified storage directory as a source
+- Required all adapters and first-run workflows to show a prominent Default Path Notice when paths are unconfirmed or confirmed defaults, and to stop before write operations unless defaults or custom paths are explicitly confirmed
 
 ## [1.0.0] - 2026-07-06
 

@@ -20,9 +20,12 @@ On first use:
    - `mcp`
    - `user_plugin`
    - `agent-config`
-5. if the user still does not provide custom paths, continue with the suggested defaults
+5. require explicit confirmation before write operations:
+   - if the user says to use the defaults, continue and record the local placement status as `confirmed-default`
+   - if the user provides custom paths, continue and record the local placement status as `user-custom`
+   - if the user does not confirm either option, stop before migration, install, bridge creation, or config changes
 
-Do not silently assume a final storage layout before this step.
+Do not silently assume a final storage layout before this step. Installation alone must not cause migration or default-path adoption.
 
 ## OS-Aware Defaults
 
@@ -51,6 +54,17 @@ Do not silently assume a final storage layout before this step.
 - `~/ai_tools/agent-config`
 
 These are suggested defaults only. The installed copy should store the final confirmed values in a local placement file.
+
+## Default Path Notice Requirement
+
+When no local placement file exists, or when the local placement file records `confirmed-default`, every agent response that proposes, installs, migrates, bridges, or summarizes managed paths must include a prominent notice near the top:
+
+> **默认路径提醒 / Default Path Notice**
+> 当前尚未使用自定义长期路径，或正在使用已确认的默认路径。
+> Current status: default AI home paths are being proposed or used.
+> Change them now if you want another drive or directory.
+
+Use this notice in Codex, Claude, and generic OpenAI-compatible adapters. Do not hide default-path status inside prose.
 
 ## Category Content Defaults
 
@@ -107,7 +121,7 @@ Use this concise structure:
 `- user_plugin: <default-user-plugin-path>`
 `- agent-config: <default-agent-config-path>`
 
-`You can keep these defaults or change any of them. If you do not specify different paths, I will use these defaults and continue.`
+`Please reply with "use defaults" to confirm these paths, or provide custom paths. If you do not confirm either option, I will stop before moving files, creating bridges, or changing configuration.`
 
 ## Ongoing Rule
 
