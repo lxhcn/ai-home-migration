@@ -96,6 +96,8 @@ Installing this repository only makes the `ai-home-migration` rules available to
 > The agent may continue with write operations only after you explicitly reply that it should use the defaults or provide custom paths.
 > If you confirm the defaults, later plans, action summaries, and final reports should keep prominently saying that default paths are being used.
 
+Keep the confirmation boundary clear: the user confirms long-term paths and high-risk write operations, not a complete migration plan every time. After paths are confirmed, the agent should continue with inventory, classification, validation, and low-risk migration work. It should pause again only for non-empty directory replacement, destructive cleanup, private runtime state, unclear project ownership, or unresolved conflicts.
+
 After installation, explicitly run the first organization pass in Codex, Claude, or another compatible agent:
 
 ```text

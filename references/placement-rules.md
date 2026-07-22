@@ -41,6 +41,23 @@ When `ai-home-migration` runs:
 8. if `references/installed-skills-cheatsheet.md` exists, keep it as a pointer to the root inventory instead of a second source of truth
 9. use `cross-platform-bridge-rules.md` when old entry paths must keep working after real content moves into the confirmed AI home
 
+## Confirmation Boundary Rule
+
+Confirm paths and high-risk writes, not a full migration plan.
+
+Required confirmations:
+
+- first-run default paths or custom long-term category paths
+- replacing, moving, or bridging a non-empty real directory
+- destructive deletion or irreversible cleanup
+- private runtime state such as sessions, history, shell snapshots, local settings, or user-level account files
+- project-owned Claude files or `.mcp.json` entries when ownership is ambiguous
+- unresolved source or destination conflicts
+
+No separate plan approval is required for read-only inventory, path classification, bridge validation, or routine low-risk execution after paths are confirmed.
+
+Do not phrase the workflow as "confirm paths and the migration plan" unless the user explicitly asks to review the plan first. After path confirmation, continue with the documented safe strategy and pause only at the high-risk boundaries above.
+
 ## Default Path Notice Rule
 
 If `placement-rules-local.md` is absent, incomplete, or records `confirmed-default`, every user-facing response that plans, performs, or summarizes install/migration work must include this highlighted block near the top:

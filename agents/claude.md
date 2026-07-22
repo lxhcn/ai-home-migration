@@ -16,7 +16,7 @@ Then read only the references required by the task:
 ## Suggested Claude Prompt
 
 ```text
-Use the ai-home-migration skill from this folder. Read SKILL.md as the canonical workflow, then standardize my user-managed AI agent content across Codex, Claude, MCP, OpenAI-compatible agents, and plugin/tool repos. Confirm long-term paths before moving anything, inventory first, preserve legacy entry paths when needed, and avoid publishing machine-specific local files. If only default paths are available or confirmed, show the highlighted Default Path Notice near the top of every plan, action summary, and final response.
+Use the ai-home-migration skill from this folder. Read SKILL.md as the canonical workflow, then standardize my user-managed AI agent content across Codex, Claude, MCP, OpenAI-compatible agents, and plugin/tool repos. Confirm long-term category paths and high-risk writes, inventory first, preserve legacy entry paths when needed, and avoid publishing machine-specific local files. Do not require approval of the whole migration plan unless I ask for that review. If only default paths are available or confirmed, show the highlighted Default Path Notice near the top of every plan, action summary, and final response.
 ```
 
 ## Claude-Specific Notes
@@ -29,3 +29,4 @@ Use the ai-home-migration skill from this folder. Read SKILL.md as the canonical
 - Preserve local files such as `placement-rules-local.md` as machine-specific state.
 - When a Claude installation expects a particular entry path, keep that path working with a junction or symlink only after validating the target.
 - Do not silently adopt default paths. If no local placement file exists, ask the user to confirm defaults or provide custom paths before migration, bridge creation, or config writes.
+- After paths are confirmed, proceed with routine low-risk migration steps and ask again only before replacing non-empty directories, destructive cleanup, private runtime state, project-owned content, or unresolved conflicts.

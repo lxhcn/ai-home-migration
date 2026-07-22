@@ -104,6 +104,29 @@ If a confirmed local rules file already exists, reuse it and do not override it 
 
 If the user later changes any confirmed path, automatically perform the needed migration and bridge updates.
 
+### Confirmation Boundary
+
+Confirm long-term category paths and high-risk write operations. Do not ask the user to approve the entire migration plan by default.
+
+Confirmation is required for:
+
+- first-run default paths or custom long-term category paths
+- replacing, moving, or bridging a non-empty real directory
+- destructive deletes or irreversible cleanup
+- private runtime state such as sessions, history, shell snapshots, local settings, or user-level account files
+- project-owned Claude files or `.mcp.json` entries when ownership is ambiguous
+- source or destination conflicts that cannot be resolved from local evidence
+
+Confirmation is not required for:
+
+- read-only inventory
+- explaining path classification
+- verifying existing bridges and destination contents
+- routine low-risk execution after paths are confirmed
+- applying documented safe patterns such as direct move, copy-first, backup-plus-bridge, or already-done when their risk criteria are satisfied
+
+Do not tell users they must confirm both paths and a full migration plan unless they specifically ask to approve the plan. Once paths are confirmed, proceed proactively and ask again only at the high-risk boundaries above.
+
 ### Default Path Notice
 
 When `references/placement-rules-local.md` is absent, incomplete, or records `confirmed-default` paths, every agent using this skill must prominently show the current path status in its user-facing response.

@@ -27,6 +27,14 @@ On first use:
 
 Do not silently assume a final storage layout before this step. Installation alone must not cause migration or default-path adoption.
 
+## Confirmation Boundary Default
+
+The first-run requirement is path confirmation, not full migration-plan approval.
+
+Ask for confirmation before high-risk writes: replacing, moving, or bridging a non-empty real directory; destructive cleanup; private runtime state; project-owned Claude files; or unresolved conflicts.
+
+Do not ask the user to approve a complete migration plan by default. After the user confirms default or custom paths, proceed with read-only inventory and routine low-risk actions under the documented migration rules.
+
 ## OS-Aware Defaults
 
 ### Windows default

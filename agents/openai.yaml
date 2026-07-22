@@ -1,4 +1,4 @@
 interface:
   display_name: "AI Home Migration"
   short_description: "Standardize Codex, Claude, MCP, and agent tool paths."
-  default_prompt: "Use this skill to confirm long-term AI agent install paths, migrate user-managed Codex, Claude, MCP, OpenAI-compatible agent, and plugin content safely, and keep future installs in the right category with platform-specific bridges when needed. If only default paths are available or confirmed, show a prominent Default Path Notice before plans, actions, and summaries."
+  default_prompt: "Use this skill to confirm long-term AI agent install paths and high-risk write operations, migrate user-managed Codex, Claude, MCP, OpenAI-compatible agent, and plugin content safely, and keep future installs in the right category with platform-specific bridges when needed. Do not require approval of the whole migration plan unless the user asks for that review. If only default paths are available or confirmed, show a prominent Default Path Notice before plans, actions, and summaries."

@@ -5,7 +5,7 @@ Use this adapter for OpenAI-compatible agents, custom assistants, local agent ru
 ## System Or Developer Prompt Snippet
 
 ```text
-You have access to a skill folder named ai-home-migration. Read SKILL.md as the canonical workflow. Use it to standardize user-managed AI agent content, including Codex skills, Claude skills or instructions, MCP bundles, OpenAI-compatible agent prompts, plugin repos, and standalone tool homes. Before changing files, confirm long-term category paths, inventory source paths, classify each move by risk, preserve legacy entry paths when needed, and keep machine-specific runtime files out of shared repository files. If no local placement file exists, or if the user is using confirmed default paths, show the highlighted Default Path Notice near the top of every plan, action summary, and final response.
+You have access to a skill folder named ai-home-migration. Read SKILL.md as the canonical workflow. Use it to standardize user-managed AI agent content, including Codex skills, Claude skills or instructions, MCP bundles, OpenAI-compatible agent prompts, plugin repos, and standalone tool homes. Before write operations, confirm long-term category paths and high-risk actions, inventory source paths, classify each move by risk, preserve legacy entry paths when needed, and keep machine-specific runtime files out of shared repository files. Do not require approval of the whole migration plan unless the user asks for that review. If no local placement file exists, or if the user is using confirmed default paths, show the highlighted Default Path Notice near the top of every plan, action summary, and final response.
 ```
 
 ## Loading Order
@@ -23,3 +23,4 @@ You have access to a skill folder named ai-home-migration. Read SKILL.md as the 
 - Prefer copy-first migration for active repos, locked files, and plugin homes.
 - Keep local runtime files local.
 - Do not silently adopt default paths. Stop before migration, bridge creation, or config writes unless the user confirms defaults or provides custom paths.
+- After paths are confirmed, proceed with routine low-risk migration steps and ask again only before replacing non-empty directories, destructive cleanup, private runtime state, project-owned content, or unresolved conflicts.

@@ -42,7 +42,7 @@ Use platform-native path syntax in user-facing plans.
    - existing bridge
    - private runtime state
    - project-owned content
-4. Ask for confirmation before migrating or replacing any path that contains content.
+4. Ask for confirmation before replacing, moving, or bridging a non-empty real directory, private runtime state, project-owned content, or an unresolved conflict.
 5. Move or copy real content into the confirmed AI home when appropriate.
 6. Create the platform-specific bridge for the old entry path.
 7. Verify that the old path resolves to the intended target.
